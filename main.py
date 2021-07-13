@@ -44,6 +44,9 @@ for template in templates:
     # Temporary variable for the name of the outputted html file
     filename = renderTo + "/" + template
     # Write the file to the render folder
-    f = open(filename, "a")
+    f = open(filename, "w")
     f.write(pageContent)
     f.close()
+
+    # Print confirmation
+    print("page " + template + " rendered")
