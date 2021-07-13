@@ -1,6 +1,11 @@
 # Import statements
 import config
 import os
+import shutil
+import datetime
+
+# Log the time to track execution speed
+startTime = datetime.datetime.now()
 
 # Get the working directory
 location = os.getcwd()
@@ -10,10 +15,14 @@ siteTheme = config.siteTheme
 siteCopyright = config.siteCopyright
 siteName = config.siteName
 renderTo = location + config.renderTo
+baseUrl = config.baseUrl
 
 # Initialize variables for convenience and readability
 templates = []
 
+print("Init done...\n")
+
+print("====================\nGetting templates...\n====================")
 # Finds the templates to be rendered from the selected theme folder
 for file in os.listdir(location + "/" + siteTheme):
     try:
@@ -21,11 +30,13 @@ for file in os.listdir(location + "/" + siteTheme):
             print("Found template with name " + file)
             templates.append(file)
         else:
-            print("Found an unrelated file...")
+            print("Found an unrelated file with name " + file)
     except Exception as e:
-        raise e
         print("No templates found. Try the theme directory and config.py to make sure that names match.")
+        print(e)
+print("Templates found: " + str(templates) + "\n")
 
+print("======================\nRendering templates...\n======================")
 # Opens each template and renders it, executing python which is embedded
 for template in templates:
     # Open the template
@@ -49,4 +60,27 @@ for template in templates:
     f.close()
 
     # Print confirmation
-    print("page " + template + " rendered")
+    print("Page " + template + " rendered successfully.\n")
+
+# Get static files path (css, js, etc...)
+staticPath = location + "/" + siteTheme + "/static"
+staticDest = renderTo + "/static"
+
+print("============================\nChecking for static files...\n============================")
+# Check for pre-existing static files, and delete them if they already exist
+if os.path.isdir(staticDest):
+    try:
+        shutil.rmtree(staticDest)
+    except Exception as e:
+        print("Could not delete the static destination directory... Error:")
+        print(e)
+
+shutil.copytree(staticPath, staticDest)
+print("All files were copied successfully.\n")
+
+time = datetime.datetime.now() - startTime
+print(f"""
+========================
+Done in {time} !
+========================
+""")
