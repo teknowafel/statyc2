@@ -57,7 +57,7 @@ a {
     background-color: rgba(85, 85, 85, 0.253);
 }
 
-.jumbo {
+.jumbo{
     display: flexbox;
     margin-left: 10%;
     margin-right: 10%;
@@ -66,7 +66,9 @@ a {
     margin-top: 20pt;
     padding-top: 50pt;
     background-image: url('img/example.jpg');
+    background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     padding-left: 5pt;
     padding-right: 5pt;
     padding-bottom: 5pt;
@@ -77,8 +79,8 @@ a {
 }
 
 .inner {
-    background-color: rgba(255, 255, 255, 1);
-    color: rgb(32, 32, 32);
+    background-color: rgba(32, 32, 32,0.8);
+    color: rgba(255, 255, 255);
     border-radius: 5pt;
     padding-top: 1pt;
     padding-bottom: 1pt;
