@@ -3,17 +3,34 @@
     <head>
         <title>{siteName}</title>
         <link rel="stylesheet" type="text/css" href="{baseUrl}/static/style.css">
+        <link rel="stylesheet" type="text/css" href="{baseUrl}/static/fonts.css">
     </head>
     <body>
-        <header>
-            <menu>
-                <a href="index.html" class="title">{siteName}</a>
-                <a href="#">poop</a>
-                <a href="#">poop</a>
-            </menu>
-        </header>
+        <div class="menu">
+            <a href="index.html" class="menuBtn title">Example Website</a>
+            <a class="menuBtn" href="#">Blog</a>
+            <a class="menuBtn" href="#">About</a>
+        </div>
+
+        <div class="toTop">
+            <a class="menuBtn red" href="#">▲</a>
+        </div>
+
+        <div class="jumbo" style="background-image: url('https://i.ibb.co/vq25v3z/netlify.png');">
+            <div class="titleBlock">
+                <h2>Big Statement.</h2>
+                <h4>John Smith</h4>
+            </div>
+            <div class="inner">
+                <p>
+                    A statement will go here. this could be a large or small paragraph of text, but will most likely be a short preview of a blog post. This post could include various things, including code blocks as well as other things. 
+                    <a href="#">Read more...</a>
+                </p>
+            </div>
+        </div>
     </body>
     <footer>
 
     </footer>
 </html>
+

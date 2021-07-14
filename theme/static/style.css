@@ -1,8 +1,109 @@
 html {
     background-color: rgb(32, 32, 32);
     color: white;
+    font-family: ubuntu;
+    font-weight: bold;
+}
+
+body {
+    margin: 0%;
+}
+
+p {
+    font-weight: 400;
+}
+
+.menu {
+    display: flex;
+    position: absolute;
+    bottom: 10pt;
+    background-color: rgb(65, 65, 65);
+    width: max-content;
+    border-radius: 5pt;
+    left: 10pt;
+}
+
+.toTop {
+    display: flex;
+    position: absolute;
+    bottom: 10pt;
+    background-color: rgb(65, 65, 65);
+    width: max-content;
+    border-radius: 5pt;
+    right: 10pt;
 }
 
 .title {
-    
+    color: rgb(50, 190, 255) !important; 
+}
+
+a {
+    color: rgb(255, 255, 255);
+    text-decoration: none;
+}
+
+.red {
+    color: rgb(255, 50, 50);
+}
+
+.menuBtn {
+    text-decoration: none;
+    font-size: 12pt;
+    padding: 7pt;
+    transition: all 0.5s;
+    border-radius: 5pt;
+}
+.menuBtn:hover {
+    background-color: rgba(85, 85, 85, 0.253);
+}
+
+.jumbo{
+    display: flexbox;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: rgba(255, 255, 255, 1);
+    border-radius: 5pt;
+    margin-top: 20pt;
+    padding-top: 50pt;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-position-y: top;
+    padding-left: 5pt;
+    padding-right: 5pt;
+    padding-bottom: 5pt;
+}
+
+.titleBlock {
+    line-height: 2pt;
+}
+
+.inner {
+    background-color: rgba(32, 32, 32,0.8);
+    color: rgba(255, 255, 255);
+    border-radius: 5pt;
+    padding-top: 1pt;
+    padding-bottom: 1pt;
+}
+.inner p {
+    margin: 10pt;
+}
+
+p a {
+    color: rgb(50, 190, 255);
+    transition: all 250ms;
+    font-family: ubuntu;
+}
+p a:hover {
+    color: rgb(130, 215, 255);
+}
+
+.code {
+    font-family: ubuntu mono;
+    margin-left: 20pt;
+    background-color: rgba(32, 32, 32,0.8);
+    border-radius: 5pt;
+    margin-right: 10pt;
+    padding: 5pt;
+    font-weight: 300;
 }
