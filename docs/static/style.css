@@ -11,13 +11,14 @@ body {
 
 p {
     font-weight: 400;
+    margin-top: 0pt;
 }
 
 .menu {
     display: flex;
     position: absolute;
     bottom: 10pt;
-    background-color: rgb(65, 65, 65);
+    background-color: rgb(46, 46, 46);
     width: max-content;
     border-radius: 5pt;
     left: 10pt;
@@ -27,14 +28,14 @@ p {
     display: flex;
     position: absolute;
     bottom: 10pt;
-    background-color: rgb(65, 65, 65);
+    background-color: rgb(46, 46, 46);
     width: max-content;
     border-radius: 5pt;
     right: 10pt;
 }
 
 .title {
-    color: rgb(50, 190, 255) !important; 
+    background-color: rgba(57, 57, 255, 1);
 }
 
 a {
@@ -50,53 +51,86 @@ a {
     text-decoration: none;
     font-size: 12pt;
     padding: 7pt;
-    transition: all 0.5s;
     border-radius: 5pt;
 }
 .menuBtn:hover {
-    background-color: rgba(85, 85, 85, 0.253);
+    transition: 0.4s;
+    color: gray;
+}
+
+.jumboWrapper {
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 20pt;
+    padding-top: 2pt;
+    border-radius: 5pt;
+}
+
+.buttonBlock {
+    margin-top: 15pt;
+}
+.readMoreBtn {
+    color: rgb(231, 231, 231);
+    background-color: rgb(57, 57, 255);
+    border-radius: 20pt;
+    padding: 1pt;
+    font-size: 9pt;
+}
+.readMoreBtn:hover {
+    transition: 0.4s;
+    background-color: rgba(57, 57, 255, 0.5);
+    border-radius: 5pt;
+    
+}
+a:active {
+    color: bisque !important;
 }
 
 .jumbo{
+    height: 90pt;
     display: flexbox;
-    margin-left: 10%;
-    margin-right: 10%;
-    background-color: rgba(255, 255, 255, 1);
-    border-radius: 5pt;
-    margin-top: 20pt;
-    padding-top: 50pt;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin: 5pt;
+    border-radius: 5pt 5pt 0pt 0pt;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     background-position-y: top;
-    padding-left: 5pt;
-    padding-right: 5pt;
-    padding-bottom: 5pt;
+    /*box-shadow: inset 0px 0px 67px -29px rgba(0,0,0,0.6);*/
+}
+
+.contentWrapper {
+    border-radius: 5pt;
+    background-color: rgb(71, 71, 71);
+    position: relative;
+    margin-top: -5pt;
 }
 
 .titleBlock {
     line-height: 2pt;
-    background-color: rgba(255, 255, 255, 0.8);
-    color: rgb(39, 39, 39);
+    color: rgb(217, 217, 255);
     border-radius: 5pt;
-    padding-top: 1pt;
+    padding-top: 10pt;
     padding-bottom: 1pt;
     width: max-content;
-    padding-left: 10pt;
-    padding-right: 10pt;
-    margin-bottom: 5pt;
+    margin-left: 10pt;
+    margin-right: 10pt;
+    margin-bottom: -5pt;
 }
 
 .inner {
-    background-color: rgba(32, 32, 32,0.8);
     color: rgba(255, 255, 255);
     border-radius: 5pt;
     padding-top: 1pt;
-    padding-bottom: 1pt;
+    padding-bottom: 5pt;
+    margin-left: 10pt;
+    margin-right: 10pt;
 }
 .inner p {
-    margin: 10pt;
+    margin-bottom: 10pt;
 }
+
+
 
 p a {
     color: rgb(50, 190, 255);
@@ -109,10 +143,8 @@ p a:hover {
 
 .code {
     font-family: ubuntu mono;
-    margin-left: 20pt;
     background-color: rgba(32, 32, 32,0.8);
     border-radius: 5pt;
-    margin-right: 10pt;
     padding: 5pt;
     font-weight: 300;
 }
