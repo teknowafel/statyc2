@@ -76,6 +76,15 @@ a {
 
 .titleBlock {
     line-height: 2pt;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: rgb(39, 39, 39);
+    border-radius: 5pt;
+    padding-top: 1pt;
+    padding-bottom: 1pt;
+    width: max-content;
+    padding-left: 10pt;
+    padding-right: 10pt;
+    margin-bottom: 5pt;
 }
 
 .inner {
