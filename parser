@@ -1,0 +1,10 @@
+<!--Begin code to parse blog posts-->
+;   from markdown_it import MarkdownIt
+;   for post in os.listdir(location + "/posts"):
+;       with open(location + "/posts/" + post) as file:
+;       name = file.readlines()[0]
+;       author = file.readlines()[1]
+;       date = file.readlines()[2]
+;       featuredImg = file.readline()[3]
+;       content = file.readlines()[4:]
+<p>Debug stuff: name:{name} author:{author} date:{date} featuredImg:{featuredImg} content:{content}</p>

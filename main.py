@@ -4,6 +4,7 @@ import os
 import shutil
 import datetime
 import time as t
+from bs4 import BeautifulSoup
 
 # Log the time to track execution speed
 startTime = datetime.datetime.now()
@@ -40,25 +41,32 @@ print("Templates found: " + str(templates) + "\n")
 print("======================\nRendering templates...\n======================")
 # Opens each template and renders it, executing python which is embedded
 for template in templates:
+    templatePath = location + "/" + siteTheme + "/" + template
     # Open the template
-    f = open(location + "/" + siteTheme + "/" + template)
+    with open(templatePath) as f:
+        file = f.read()
+        f.close()
 
     # Create a temporary variable to be used for the content of the rendered page
     pageContent = ""
+    pageContent = file
     
-    for line in f.readlines():
-        if line.startswith("; "):
-            line = line.removeprefix("; ")
-            exec(line)
-        else:
-            pageContent = pageContent + line.format(**locals())
+    soup = BeautifulSoup(pageContent, 'html.parser')
+    for tag in soup.select('python'):
+        code = tag.getText().strip()
+        print(code)
+        exec(code)
+        tag.decompose()
+
+    soup = soup.prettify()
+    pageContent = str(soup).format(**locals())
     
     # Temporary variable for the name of the outputted html file
     filename = renderTo + "/" + template
     # Write the file to the render folder
-    f = open(filename, "w")
-    f.write(pageContent)
-    f.close()
+
+    with open(filename, "w", encoding='utf-8') as f:
+        f.write(pageContent)
 
     # Print confirmation
     print("Page " + template + " rendered successfully.\n")
