@@ -1,0 +1,8 @@
+posts:
+  - 
+    name: Hello World!
+    author: John Smith
+    date: 7/31/2021
+    content: |
+      ## Markdown 
+      It works!

@@ -1,0 +1,3 @@
+theme:
+  name: Default Theme for statyc2
+  static_folder: static

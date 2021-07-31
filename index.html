@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>JS Testing</title>
+    </head>
+    <script src="js-yaml.min.js"></script>
+    <script src="showdown.min.js"></script>
+    <script type="text/javascript">
+        fetch('posts.yaml')
+            .then(response => response.text())
+            .then(data => {
+  	        // Do something with your data
+            var doc = jsyaml.load(data);
+            for (const post of doc.posts) {
+                var converter = new showdown.Converter();
+                var html = converter.makeHtml(post.content);
+                document.write(post.name + "<br>")
+                document.write(post.author + "<br>")
+                document.write(post.date + "<br>")
+                document.write(html + "<br>")
+            }
+        });
+    </script>
+    <body>
+
+    </body>
+</html>
