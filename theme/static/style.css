@@ -47,6 +47,10 @@ a {
     color: rgb(255, 50, 50);
 }
 
+li {
+    font-weight: 400;
+}
+
 .menuBtn {
     text-decoration: none;
     font-size: 12pt;
@@ -101,9 +105,13 @@ a:active {
 
 .contentWrapper {
     border-radius: 5pt;
-    background-color: rgb(71, 71, 71);
+    background-color: rgb(48, 48, 48);
     position: relative;
     margin-top: -5pt;
+}
+
+h1{
+    color: rgb(217, 217, 255) !important;
 }
 
 .titleBlock {
@@ -130,14 +138,23 @@ a:active {
     margin-bottom: 10pt;
 }
 
-
+footer {
+    font-weight: 100;
+    font-size: 10pt;
+    color: rgba(255, 255, 255, 0.1);
+    position: absolute;
+    bottom: 17pt;
+    right: 50pt;
+    z-index: -100;
+}
 
 p a {
     color: rgb(50, 190, 255);
-    transition: all 250ms;
+    
     font-family: ubuntu;
 }
 p a:hover {
+    transition: 250ms;
     color: rgb(130, 215, 255);
 }
 
@@ -147,4 +164,22 @@ p a:hover {
     border-radius: 5pt;
     padding: 5pt;
     font-weight: 300;
+}
+
+.landing {
+    background-color: rgb(42, 42, 42);
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 5pt;
+    color: white;
+    padding: 5pt;
+    margin-top: 20pt;
+}
+.innerLanding { 
+    background-color: rgb(38, 38, 38);
+    padding: 15pt;
+    border-radius: 5pt;
+}
+li {
+    color: rgb(217, 217, 255);
 }
