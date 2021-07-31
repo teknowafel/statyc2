@@ -1,1 +1,1 @@
-pip install markdown-it-py[plugins]
+markdown-it-py[plugins]

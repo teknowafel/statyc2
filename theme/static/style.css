@@ -7,30 +7,34 @@ html {
 
 body {
     margin: 0%;
+    margin-bottom: 50pt;
 }
 
 p {
     font-weight: 400;
     margin-top: 0pt;
+    line-height: 16pt;
 }
 
 .menu {
     display: flex;
-    position: absolute;
+    position: fixed;
+    z-index: 100;
     bottom: 10pt;
     background-color: rgb(46, 46, 46);
     width: max-content;
-    border-radius: 5pt;
+    border-radius: 3pt;
     left: 10pt;
 }
 
 .toTop {
+    z-index: 100;
     display: flex;
-    position: absolute;
+    position: fixed;
     bottom: 10pt;
     background-color: rgb(46, 46, 46);
     width: max-content;
-    border-radius: 5pt;
+    border-radius: 3pt;
     right: 10pt;
 }
 
@@ -55,7 +59,7 @@ li {
     text-decoration: none;
     font-size: 12pt;
     padding: 7pt;
-    border-radius: 5pt;
+    border-radius: 3pt;
 }
 .menuBtn:hover {
     transition: 0.4s;
@@ -63,11 +67,11 @@ li {
 }
 
 .jumboWrapper {
-    margin-left: 10%;
-    margin-right: 10%;
+    margin-left: 15%;
+    margin-right: 15%;
     margin-top: 20pt;
     padding-top: 2pt;
-    border-radius: 5pt;
+    border-radius: 3pt;
 }
 
 .buttonBlock {
@@ -83,7 +87,7 @@ li {
 .readMoreBtn:hover {
     transition: 0.4s;
     background-color: rgba(57, 57, 255, 0.5);
-    border-radius: 5pt;
+    border-radius: 3pt;
     
 }
 a:active {
@@ -95,7 +99,7 @@ a:active {
     display: flexbox;
     background-color: rgba(255, 255, 255, 0.5);
     margin: 5pt;
-    border-radius: 5pt 5pt 0pt 0pt;
+    border-radius: 3pt 3pt 0pt 0pt;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -104,7 +108,7 @@ a:active {
 }
 
 .contentWrapper {
-    border-radius: 5pt;
+    border-radius: 3pt;
     background-color: rgb(48, 48, 48);
     position: relative;
     margin-top: -5pt;
@@ -117,10 +121,9 @@ h1{
 .titleBlock {
     line-height: 2pt;
     color: rgb(217, 217, 255);
-    border-radius: 5pt;
+    border-radius: 3pt;
     padding-top: 10pt;
     padding-bottom: 1pt;
-    width: max-content;
     margin-left: 10pt;
     margin-right: 10pt;
     margin-bottom: -5pt;
@@ -128,7 +131,7 @@ h1{
 
 .inner {
     color: rgba(255, 255, 255);
-    border-radius: 5pt;
+    border-radius: 3pt;
     padding-top: 1pt;
     padding-bottom: 5pt;
     margin-left: 10pt;
@@ -142,10 +145,10 @@ footer {
     font-weight: 100;
     font-size: 10pt;
     color: rgba(255, 255, 255, 0.1);
-    position: absolute;
+    position: fixed;
     bottom: 17pt;
     right: 50pt;
-    z-index: -100;
+    z-index: 99;
 }
 
 p a {
@@ -161,16 +164,16 @@ p a:hover {
 .code {
     font-family: ubuntu mono;
     background-color: rgba(32, 32, 32,0.8);
-    border-radius: 5pt;
+    border-radius: 3pt;
     padding: 5pt;
     font-weight: 300;
 }
 
 .landing {
     background-color: rgb(42, 42, 42);
-    margin-left: 10%;
-    margin-right: 10%;
-    border-radius: 5pt;
+    margin-left: 15%;
+    margin-right: 15%;
+    border-radius: 3pt;
     color: white;
     padding: 5pt;
     margin-top: 20pt;
@@ -178,8 +181,71 @@ p a:hover {
 .innerLanding { 
     background-color: rgb(38, 38, 38);
     padding: 15pt;
-    border-radius: 5pt;
+    border-radius: 3pt;
 }
 li {
     color: rgb(217, 217, 255);
+}
+
+img {
+    height: 200pt;
+    border-radius: 3pt;
+}
+
+@media (pointer:none), (pointer:coarse) {
+    .menuBtn {
+        font-size: 30pt;
+        border-radius: 10pt;
+        padding: 15pt;
+    }
+    .menu {
+        border-radius: 10pt;
+    }
+    .toTop {
+        border-radius: 10pt;
+    }
+    .titleBlock {
+        margin-top: 0;
+        font-size: 25pt;
+    }
+    .titleBlock h5 {
+        margin-top: 40pt;
+        margin-bottom: 20pt;
+        font-size: 10pt;
+        font-weight: 600;
+    }
+    .jumbo {
+        height: 240pt;
+        margin-left: 15pt;
+        margin-right: 15pt;
+        border-radius: 10pt;
+    }
+    .jumboWrapper {
+        margin-left: 2%;
+        margin-right: 2%;
+    }
+    .contentWrapper {
+        border-radius: 10pt;
+        position: relative;
+        margin-top: -30pt;
+    }
+    .landing {
+        margin-left: 2%;
+        margin-right: 2%;
+        padding: 12pt;
+        border-radius: 10pt;
+    }
+    .innerLanding {
+        border-radius: 10pt;
+    }
+    footer {
+        visibility: hidden;
+    }
+    body {
+        margin-bottom: 100pt;
+    }
+    img {
+        height: 400pt;
+        border-radius: 10pt;
+    }
 }
