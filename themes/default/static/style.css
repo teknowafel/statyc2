@@ -7,13 +7,14 @@ html {
 
 body {
     margin: 0%;
+    margin-top: 50pt;
     margin-bottom: 50pt;
 }
 
 p {
     font-weight: 400;
     margin-top: 0pt;
-    line-height: 16pt;
+    line-height: 15pt;
 }
 
 .menu {
@@ -53,6 +54,10 @@ a {
 
 li {
     font-weight: 400;
+}
+li a {
+    text-decoration: underline;
+    color: white;
 }
 
 .menuBtn {
@@ -161,12 +166,14 @@ p a:hover {
     color: rgb(130, 215, 255);
 }
 
-.code {
+code {
+    display: inline-block;
     font-family: ubuntu mono;
     background-color: rgba(32, 32, 32,0.8);
     border-radius: 3pt;
     padding: 5pt;
     font-weight: 300;
+    width: max-content;
 }
 
 .landing {
@@ -192,7 +199,14 @@ img {
     border-radius: 3pt;
 }
 
+h5 {
+    margin-bottom: 5pt;
+}
+
 @media (pointer:none), (pointer:coarse) {
+    .readMoreBtn {
+        font-size: 10pt;
+    }
     .menuBtn {
         font-size: 30pt;
         border-radius: 10pt;
@@ -206,13 +220,25 @@ img {
     }
     .titleBlock {
         margin-top: 0;
-        font-size: 25pt;
+        font-size: 40pt;
     }
     .titleBlock h5 {
         margin-top: 40pt;
+        font-size: 20pt;
         margin-bottom: 20pt;
-        font-size: 10pt;
         font-weight: 600;
+    }
+    p {
+        font-size: 23pt;
+        line-height: 40pt;
+    }
+    code {
+        border-radius: 15pt;
+        padding: 1pt;
+        font-size: 25pt;
+    }
+    li {
+        font-size: 25pt;
     }
     .jumbo {
         height: 240pt;
@@ -243,9 +269,5 @@ img {
     }
     body {
         margin-bottom: 100pt;
-    }
-    img {
-        height: 400pt;
-        border-radius: 10pt;
     }
 }

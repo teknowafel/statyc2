@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title id="title"></title>
+        <link rel="stylesheet" type="text/css" href="static/style.css">
+        <link rel="stylesheet" type="text/css" href="static/fonts.css">
+        <script src="static/js-yaml.min.js"></script>
+        <script src="static/showdown.min.js"></script>
+        <link rel="icon" type="image/svg" href="static/img/logo.svg">
+    </head>
+    <top id="top"/>
+    <body>
+        <div class="menu">
+            <a href="index.html" class="menuBtn title" id="titlebtn"></a>
+            <a class="menuBtn" href="blog.html">Blog</a>
+            <a class="menuBtn" href="about.html">About</a>
+        </div>
+
+        <div class="toTop">
+            <a class="menuBtn red" href="#top">▲</a>
+        </div>
+        <script>
+            fetch('settings.yaml')
+                .then(response => response.text())
+                .then(data => {
+                  // Do something with your data
+                var doc = jsyaml.load(data);
+                document.getElementsByTagName("footer")[0].innerHTML = doc.settings.copyright_info;
+                document.getElementById("title").innerHTML = post_name + " | " + doc.settings.site_name;
+                document.getElementById("titlebtn").innerHTML = doc.settings.site_name;
+            });
+            fetch('posts.yaml')
+                .then(response => response.text())
+                .then(data => {
+                  // Do something with your data
+                var doc = jsyaml.load(data);
+                for (const post of doc.posts) {
+                    if (post.name == post_name) {
+                        page_post = post;
+                    }
+                }
+
+                var converter = new showdown.Converter();
+                // create html from post in markdown form
+                var markdown_html = converter.makeHtml(page_post.content);
+
+                var postwrapper = document.getElementById("postwrapper");
+
+                var element = document.createElement('div');
+                element.innerHTML = `
+                <div class="landing">
+                    <div class="innerLanding">
+                        <h1>${page_post.name}</h1>
+                        ${markdown_html}
+                    </div>
+                </div>
+                `;
+                postwrapper.appendChild(element);
+            });
+
+            const query_string = window.location.search;
+            const url_params = new URLSearchParams(query_string);
+            const post_name = url_params.get('name')
+        </script>
+
+        <div id="postwrapper">
+
+        </div>
+        
+        
+    </body>
+    <footer>
+        
+    </footer>
+</html>
+

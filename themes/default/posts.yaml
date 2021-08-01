@@ -1,0 +1,25 @@
+posts:
+  - 
+    name: Hello World!
+    author: John Smith
+    date: 7/31/2021
+    featured_image: none
+    content: |
+      It works! I wrote this in markdown to the `posts.yaml` file, and now it's
+      a blog post!
+
+  -
+    name: Things
+    author: John Smith
+    date: 8/1/2021
+    featured_image: https://picsum.photos/500/300
+    content: |
+      Thanks to *markdown*, these posts can contain a variety of things.
+      We can have
+      * Bulleted lists
+      * **Bold Text**
+      * *Italic Text*
+      * ***Both at the same time***
+      * `Code snippets`
+      * Images
+      * and even [hyperlinks!](#)
