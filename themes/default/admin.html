@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title id="title"></title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <link rel="stylesheet" type="text/css" href="static/fonts.css">
+    <script src="static/js-yaml.min.js"></script>
+    <script src="static/showdown.min.js"></script>
+    <link rel="icon" type="image/svg" href="static/img/logo.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<top id="top" />
+
+<body>
+    <div class="menu">
+        <a href="index.html" class="menuBtn title" id="titlebtn"></a>
+        <a class="menuBtn" href="blog.html">Blog</a>
+        <a class="menuBtn" href="about.html">About</a>
+    </div>
+
+    <div class="toTop">
+        <a class="menuBtn red" href="#top">▲</a>
+    </div>
+    <script>
+        fetch('settings.yaml')
+            .then(response => response.text())
+            .then(data => {
+                // Do something with your data
+                var doc = jsyaml.load(data);
+                document.getElementsByTagName("footer")[0].innerHTML = doc.settings.copyright_info;
+                document.getElementById("title").innerHTML = doc.settings.site_name;
+                document.getElementById("titlebtn").innerHTML = doc.settings.site_name;
+                document.getElementById("copyright").innerHTML = "<p>" + doc.settings.copyright_info + "</p>";
+            });
+    </script>
+
+    <div class="filesbar" id="filePanel" data-open="false">
+        <h2>Posts</h2>
+        <details>
+            <summary>Post</summary>
+            <label for="name">Name:</label>
+            <input type="text" id="name" value="name"><br><br>
+
+            <label for="author">Author:</label>
+            <input type="text" id="author" value="author"><br><br>
+
+            <label for="date">Date:</label>
+            <input type="text" id="date" value="date"><br><br>
+
+            <label for="featured_image">Featured Image:</label>
+            <input type="text" id="featured_image" value="featured_image"><br><br>
+
+            <a href="#" class="markBtn">Edit Markdown</a>
+        </details>
+        <a href="#" id="openclose" onclick="togglePanel();">
+            ◀
+        </a>
+        <a href="#" id="exportYaml">Export yaml</a>
+    </div>
+
+    <div class="editorcontainer">
+        <div id="pane-left">
+            Things on the left
+        </div>
+        <div id="pane-right">
+            Things on the right
+        </div>
+
+    </div>
+
+
+</body>
+
+<script>
+    const panel = document.querySelector("#filePanel");
+    const openclose = document.querySelector("#openclose");
+
+    function togglePanel() {
+        if (panel.dataset.open == "true") {
+            panel.dataset.open = "false";
+            openclose.innerHTML = "▶";
+        } else {
+            panel.dataset.open = "true";
+            openclose.innerHTML = "◀";
+        }
+    }
+</script>
+
+<footer>
+</footer>
+
+</html>

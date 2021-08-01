@@ -223,6 +223,116 @@ h5 {
     color: rgba(255, 255, 255, 0.5);
 }
 
+#exportYaml {
+    background-color: rgb(72, 72, 255);
+    border-radius: 3pt;
+    padding: 5pt;
+    position: absolute;
+    bottom: 10pt;
+    left: 10pt;
+    right: 10pt;
+    text-align: center;
+}
+
+#openclose {
+    position: absolute;
+    bottom: 1pt;
+    left: 140pt;
+    font-size: 15pt;
+    color: rgb(166, 166, 255);
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3pt;
+    padding: 5pt;
+}
+
+.markBtn {
+    background-color: rgb(92, 92, 255);
+    border-radius: 3pt;
+    padding: 2pt;
+    font-size: 11pt;
+}
+
+.filesbar {
+    width: max-content;
+    position: fixed;
+    top: 15pt;
+    left: 10pt;
+    bottom: 50pt;
+    background-color: rgb(48, 48, 48);
+    padding: 10pt;
+    width: 110pt;
+    border-radius: 5pt;
+}
+
+.filesbar[data-open="true"] {
+    transition: 0.2s;
+    left: 10pt;
+}
+
+.filesbar[data-open="false"] {
+    transition: 0.2s;
+    left: -130pt;
+}
+
+.filesbar details {
+    font-weight: 600;
+}
+
+.filesbar label {
+    font-weight: 400;
+}
+
+.filesbar input {
+    border: none;
+    color: white;
+    font-family: Ubuntu Mono;
+    border-radius: 3pt;
+    padding: 2pt;
+    background-color: rgb(71, 71, 71);
+}
+
+summary {
+    color: rgb(194, 194, 255);
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 2pt;
+    border-radius: 3pt;
+    margin-bottom: 10pt;
+}
+
+.editorcontainer {
+    display: block;
+    background-color: rgb(30, 30, 30);
+    position: fixed;
+    left: 40pt;
+    right: 10pt;
+    top: 15pt;
+    bottom: 50pt;
+    border-radius: 3pt;
+    z-index: -99;
+    padding: 15pt;
+}
+
+#pane-left,
+#pane-right {
+    display: block;
+    background-color: rgb(41, 41, 41);
+    width: 49%;
+    height: 100%;
+    border-radius: 3pt;
+}
+
+#pane-left {
+    float: left;
+}
+
+#pane-right {
+    float: right;
+}
+
+details>p {
+    margin-left: 20pt;
+}
+
 @media (pointer:none),
 (pointer:coarse) {
     footer {
