@@ -88,7 +88,7 @@ li a {
 .readMoreBtn {
     color: rgb(231, 231, 231);
     background-color: rgb(57, 57, 255);
-    border-radius: 20pt;
+    border-radius: 2pt;
     padding: 1pt;
     font-size: 9pt;
 }
@@ -107,7 +107,8 @@ a:active {
     height: 90pt;
     display: flexbox;
     background-color: rgba(255, 255, 255, 0.5);
-    margin: 5pt;
+    margin-left: 5pt;
+    margin-right: 5pt;
     border-radius: 3pt 3pt 0pt 0pt;
     background-repeat: no-repeat;
     background-size: cover;
@@ -120,7 +121,7 @@ a:active {
     border-radius: 3pt;
     background-color: rgb(48, 48, 48);
     position: relative;
-    margin-top: -5pt;
+    margin-top: -10pt;
 }
 
 h1 {
