@@ -1,38 +1,41 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title id="title"></title>
-        <link rel="stylesheet" type="text/css" href="static/style.css">
-        <link rel="stylesheet" type="text/css" href="static/fonts.css">
-        <script src="static/js-yaml.min.js"></script>
-        <script src="static/showdown.min.js"></script>
-        <link rel="icon" type="image/svg" href="static/img/logo.svg">
-    </head>
-    <top id="top"/>
-    <body>
-        <div class="menu">
-            <a href="index.html" class="menuBtn title" id="titlebtn"></a>
-            <a class="menuBtn" href="blog.html">Blog</a>
-            <a class="menuBtn" href="about.html">About</a>
-        </div>
 
-        <div class="toTop">
-            <a class="menuBtn red" href="#top">▲</a>
-        </div>
-        <script>
-            fetch('settings.yaml')
-                .then(response => response.text())
-                .then(data => {
-                  // Do something with your data
+<head>
+    <title id="title"></title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <link rel="stylesheet" type="text/css" href="static/fonts.css">
+    <script src="static/js-yaml.min.js"></script>
+    <script src="static/showdown.min.js"></script>
+    <link rel="icon" type="image/svg" href="static/img/logo.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<top id="top" />
+
+<body>
+    <div class="menu">
+        <a href="index.html" class="menuBtn title" id="titlebtn"></a>
+        <a class="menuBtn" href="blog.html">Blog</a>
+        <a class="menuBtn" href="about.html">About</a>
+    </div>
+
+    <div class="toTop">
+        <a class="menuBtn red" href="#top">▲</a>
+    </div>
+    <script>
+        fetch('settings.yaml')
+            .then(response => response.text())
+            .then(data => {
+                // Do something with your data
                 var doc = jsyaml.load(data);
                 document.getElementsByTagName("footer")[0].innerHTML = doc.settings.copyright_info;
                 document.getElementById("title").innerHTML = post_name + " | " + doc.settings.site_name;
                 document.getElementById("titlebtn").innerHTML = doc.settings.site_name;
             });
-            fetch('posts.yaml')
-                .then(response => response.text())
-                .then(data => {
-                  // Do something with your data
+        fetch('posts.yaml')
+            .then(response => response.text())
+            .then(data => {
+                // Do something with your data
                 var doc = jsyaml.load(data);
                 for (const post of doc.posts) {
                     if (post.name == post_name) {
@@ -58,19 +61,17 @@
                 postwrapper.appendChild(element);
             });
 
-            const query_string = window.location.search;
-            const url_params = new URLSearchParams(query_string);
-            const post_name = url_params.get('name')
-        </script>
+        const query_string = window.location.search;
+        const url_params = new URLSearchParams(query_string);
+        const post_name = url_params.get('name');
+    </script>
 
-        <div id="postwrapper">
+    <div id="postwrapper">
+    </div>
 
-        </div>
-        
-        
-    </body>
-    <footer>
-        
-    </footer>
+</body>
+<footer>
+
+</footer>
+
 </html>
-

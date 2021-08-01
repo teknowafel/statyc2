@@ -1,47 +1,55 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title id="title"></title>
-        <link rel="stylesheet" type="text/css" href="static/style.css">
-        <link rel="stylesheet" type="text/css" href="static/fonts.css">
-        <script src="static/js-yaml.min.js"></script>
-        <script src="static/showdown.min.js"></script>
-        <link rel="icon" type="image/svg" href="static/img/logo.svg">
-    </head>
-    <top id="top"/>
-    <body>
-        <div class="menu">
-            <a href="index.html" class="menuBtn title" id="titlebtn"></a>
-            <a class="menuBtn" href="blog.html">Blog</a>
-            <a class="menuBtn" href="about.html">About</a>
-        </div>
 
-        <div class="toTop">
-            <a class="menuBtn red" href="#top">▲</a>
-        </div>
-        <script type="text/javascript">
-            fetch('settings.yaml')
-                .then(response => response.text())
-                .then(data => {
-                  // Do something with your data
+<head>
+    <title id="title"></title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <link rel="stylesheet" type="text/css" href="static/fonts.css">
+    <script src="static/js-yaml.min.js"></script>
+    <script src="static/showdown.min.js"></script>
+    <link rel="icon" type="image/svg" href="static/img/logo.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<top id="top" />
+
+<body>
+    <div class="menu">
+        <a href="index.html" class="menuBtn title" id="titlebtn"></a>
+        <a class="menuBtn" href="blog.html">Blog</a>
+        <a class="menuBtn" href="about.html">About</a>
+    </div>
+
+    <div class="toTop">
+        <a class="menuBtn red" href="#top">▲</a>
+    </div>
+    <script type="text/javascript">
+        fetch('settings.yaml')
+            .then(response => response.text())
+            .then(data => {
+                // Do something with your data
                 var doc = jsyaml.load(data);
                 document.getElementsByTagName("footer")[0].innerHTML = doc.settings.copyright_info;
                 document.getElementById("title").innerHTML = doc.settings.site_name;
                 document.getElementById("titlebtn").innerHTML = doc.settings.site_name;
             });
-        </script>
+    </script>
 
-        <script type="text/javascript">
-            fetch('posts.yaml')
-                .then(response => response.text())
-                .then(data => {
-                  // Do something with your data
+    <script type="text/javascript">
+        fetch('posts.yaml')
+            .then(response => response.text())
+            .then(data => {
+                // Do something with your data
                 var doc = jsyaml.load(data);
                 for (const post of doc.posts) {
                     // instantiate a markdown converter
                     var converter = new showdown.Converter();
+                    // create a smaller portion of the markdown for the preview
+                    var mdpreview = post.content.split('\n')
+                    mdpreview = mdpreview.slice(0, 3).join(" ") + "...";
                     // create html from post in markdown form
                     var markdown_html = converter.makeHtml(post.content);
+                    // create a preview of the post based on the html
+                    var preview_html = converter.makeHtml(mdpreview);
                     // get the posts container element
                     var postsElement = document.getElementById("posts");
                     // create a new div for the post
@@ -59,7 +67,7 @@
                                     </div>
                                 <div class="inner">
                                     <p>
-                                        ${markdown_html}<a href="${post_link}" class="readMoreBtn">Read more...</a>
+                                        ${preview_html}<a href="${post_link}" class="readMoreBtn">Read more...</a>
                                     </p>
                                 </div>
                             </div>
@@ -74,13 +82,13 @@
                     }
                 }
             });
-        </script>
-        <div id="posts">
-        
-        </posts>
-    </body>
-    <footer>
-        
-    </footer>
-</html>
+    </script>
+    <div id="posts">
 
+        </posts>
+</body>
+<footer>
+
+</footer>
+
+</html>

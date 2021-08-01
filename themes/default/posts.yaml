@@ -5,8 +5,7 @@ posts:
     date: 7/31/2021
     featured_image: none
     content: |
-      It works! I wrote this in markdown to the `posts.yaml` file, and now it's
-      a blog post!
+      It works! I wrote this in markdown to the `posts.yaml` file, and now it's a blog post!
 
   -
     name: Things

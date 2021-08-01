@@ -14,7 +14,7 @@ body {
 p {
     font-weight: 400;
     margin-top: 0pt;
-    line-height: 15pt;
+    line-height: 20pt;
 }
 
 .menu {
@@ -55,6 +55,7 @@ a {
 li {
     font-weight: 400;
 }
+
 li a {
     text-decoration: underline;
     color: white;
@@ -66,6 +67,7 @@ li a {
     padding: 7pt;
     border-radius: 3pt;
 }
+
 .menuBtn:hover {
     transition: 0.4s;
     color: gray;
@@ -82,6 +84,7 @@ li a {
 .buttonBlock {
     margin-top: 15pt;
 }
+
 .readMoreBtn {
     color: rgb(231, 231, 231);
     background-color: rgb(57, 57, 255);
@@ -89,17 +92,18 @@ li a {
     padding: 1pt;
     font-size: 9pt;
 }
+
 .readMoreBtn:hover {
     transition: 0.4s;
     background-color: rgba(57, 57, 255, 0.5);
     border-radius: 3pt;
-    
 }
+
 a:active {
     color: bisque !important;
 }
 
-.jumbo{
+.jumbo {
     height: 90pt;
     display: flexbox;
     background-color: rgba(255, 255, 255, 0.5);
@@ -119,7 +123,7 @@ a:active {
     margin-top: -5pt;
 }
 
-h1{
+h1 {
     color: rgb(217, 217, 255) !important;
 }
 
@@ -142,6 +146,7 @@ h1{
     margin-left: 10pt;
     margin-right: 10pt;
 }
+
 .inner p {
     margin-bottom: 10pt;
 }
@@ -158,9 +163,9 @@ footer {
 
 p a {
     color: rgb(50, 190, 255);
-    
     font-family: ubuntu;
 }
+
 p a:hover {
     transition: 250ms;
     color: rgb(130, 215, 255);
@@ -169,9 +174,9 @@ p a:hover {
 code {
     display: inline-block;
     font-family: ubuntu mono;
-    background-color: rgba(32, 32, 32,0.8);
+    background-color: rgb(57, 57, 90);
     border-radius: 3pt;
-    padding: 5pt;
+    padding: 1pt;
     font-weight: 300;
     width: max-content;
 }
@@ -185,11 +190,13 @@ code {
     padding: 5pt;
     margin-top: 20pt;
 }
-.innerLanding { 
+
+.innerLanding {
     background-color: rgb(38, 38, 38);
     padding: 15pt;
     border-radius: 3pt;
 }
+
 li {
     color: rgb(217, 217, 255);
 }
@@ -203,71 +210,36 @@ h5 {
     margin-bottom: 5pt;
 }
 
-@media (pointer:none), (pointer:coarse) {
-    .readMoreBtn {
-        font-size: 10pt;
-    }
-    .menuBtn {
-        font-size: 30pt;
-        border-radius: 10pt;
-        padding: 15pt;
-    }
-    .menu {
-        border-radius: 10pt;
-    }
-    .toTop {
-        border-radius: 10pt;
-    }
-    .titleBlock {
-        margin-top: 0;
-        font-size: 40pt;
-    }
-    .titleBlock h5 {
-        margin-top: 40pt;
-        font-size: 20pt;
-        margin-bottom: 20pt;
-        font-weight: 600;
-    }
-    p {
-        font-size: 23pt;
-        line-height: 40pt;
-    }
-    code {
-        border-radius: 15pt;
-        padding: 1pt;
-        font-size: 25pt;
-    }
-    li {
-        font-size: 25pt;
-    }
-    .jumbo {
-        height: 240pt;
-        margin-left: 15pt;
-        margin-right: 15pt;
-        border-radius: 10pt;
+#copyright {
+    margin-bottom: -7pt;
+    margin-top: 5pt;
+    margin-left: 5pt;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+@media (pointer:none),
+(pointer:coarse) {
+    footer {
+        visibility: hidden;
     }
     .jumboWrapper {
         margin-left: 2%;
         margin-right: 2%;
     }
-    .contentWrapper {
-        border-radius: 10pt;
-        position: relative;
-        margin-top: -30pt;
-    }
     .landing {
         margin-left: 2%;
         margin-right: 2%;
-        padding: 12pt;
-        border-radius: 10pt;
-    }
-    .innerLanding {
-        border-radius: 10pt;
-    }
-    footer {
-        visibility: hidden;
     }
     body {
-        margin-bottom: 100pt;
+        margin-top: 10pt;
+    }
+    .readMoreBtn {
+        font-size: 10pt;
+    }
+    .menu {
+        left: 2%;
+    }
+    .toTop {
+        right: 2%;
     }
 }
