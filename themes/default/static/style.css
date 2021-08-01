@@ -210,6 +210,11 @@ h5 {
     margin-bottom: 5pt;
 }
 
+.published {
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 0pt;
+}
+
 #copyright {
     margin-bottom: -7pt;
     margin-top: 5pt;

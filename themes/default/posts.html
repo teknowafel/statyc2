@@ -43,6 +43,8 @@
                     }
                 }
 
+                var published = "Published " + page_post.date + " by " + page_post.author;
+
                 var converter = new showdown.Converter();
                 // create html from post in markdown form
                 var markdown_html = converter.makeHtml(page_post.content);
@@ -50,12 +52,25 @@
                 var postwrapper = document.getElementById("postwrapper");
 
                 var element = document.createElement('div');
+                // create jumbo variable in case there is a featured image
+                var jumbo = "";
+                // margin variable dependent on the featured image
+                var margin = "";
+
+                if (page_post.featured_image != "none") {
+                    jumbo = `
+                        <div class="jumbo" style="background-image: url('${page_post.featured_image}');"></div>
+                    `
+                    margin = "margin-top: -5pt;"
+                }
                 element.innerHTML = `
                 <div class="landing">
-                    <div class="innerLanding">
+                    ${jumbo}
+                    <div class="innerLanding" style="${margin}">
                         <h1>${page_post.name}</h1>
                         ${markdown_html}
                     </div>
+                    <p class="published">${published}</p>
                 </div>
                 `;
                 postwrapper.appendChild(element);
