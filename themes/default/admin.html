@@ -9,6 +9,11 @@
     <script src="static/showdown.min.js"></script>
     <link rel="icon" type="image/svg" href="static/img/logo.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="static/dracula.css">
+    <script src="static/ace.js"></script>
+    <script src="static/mode-markdown.js"></script>
+    <script src="static/theme-dracula.js"></script>
 </head>
 <top id="top" />
 
@@ -31,7 +36,6 @@
                 document.getElementsByTagName("footer")[0].innerHTML = doc.settings.copyright_info;
                 document.getElementById("title").innerHTML = doc.settings.site_name;
                 document.getElementById("titlebtn").innerHTML = doc.settings.site_name;
-                document.getElementById("copyright").innerHTML = "<p>" + doc.settings.copyright_info + "</p>";
             });
     </script>
 
@@ -61,10 +65,10 @@
 
     <div class="editorcontainer">
         <div id="pane-left">
-            Things on the left
+            <div class="ace-editor" id="editor" style="height: 100%; width: 100%;">Hello world!</div>
         </div>
         <div id="pane-right">
-            Things on the right
+
         </div>
 
     </div>
@@ -84,6 +88,53 @@
             panel.dataset.open = "true";
             openclose.innerHTML = "◀";
         }
+    }
+
+    var element = document.getElementById("editor");
+    var editor = ace.edit(element, {
+        mode: "ace/mode/markdown",
+        theme: "ace/theme/dracula",
+        printMargin: false,
+        fontSize: "12pt",
+        behavioursEnabled: true,
+        wrapBeheviorsEnabled: true,
+        wrap: true,
+        selectionStyle: "line"
+    })
+    editor.resize();
+
+    var rightPane = document.getElementById("pane-right");
+
+    var innerpane = document.createElement("div");
+    innerpane.innerHTML = `
+                <div class="landing">
+                    <div class="jumbo" style="background-image: url('');"></div>
+                    <div class="innerLanding" style="margin-top: -5pt;">
+                        <h1>Title</h1>
+                        HTML
+                    </div>
+                    <p class="published">Published</p>
+                </div>
+                `;
+    rightPane.appendChild(innerpane);
+
+    setInterval(render, 100);
+    var markdown = "";
+    var converter = new showdown.Converter();
+
+    function render() {
+        markdown = editor.getValue();
+        var markdown_html = converter.makeHtml(markdown);
+        document.getElementById("pane-right").innerHTML = `
+        <div class="landing">
+            <div class="jumbo" style="background-image: url('');"></div>
+            <div class="innerLanding" style="margin-top: -5pt;">
+                <h1>Title</h1>
+                    ${markdown_html}
+            </div>
+            <p class="published">Published</p>
+        </div>
+        `;
     }
 </script>
 

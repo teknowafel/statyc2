@@ -266,7 +266,7 @@ h5 {
 
 .filesbar[data-open="true"] {
     transition: 0.2s;
-    left: 10pt;
+    left: 15pt;
 }
 
 .filesbar[data-open="false"] {
@@ -316,17 +316,23 @@ summary {
 #pane-right {
     display: block;
     background-color: rgb(41, 41, 41);
-    width: 49%;
     height: 100%;
     border-radius: 3pt;
 }
 
 #pane-left {
+    width: 40%;
     float: left;
 }
 
 #pane-right {
+    width: 59%;
     float: right;
+    overflow-y: scroll;
+}
+
+.ace-editor {
+    border-radius: 3pt;
 }
 
 details>p {
