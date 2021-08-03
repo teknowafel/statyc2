@@ -109,7 +109,7 @@
         behavioursEnabled: true,
         wrapBeheviorsEnabled: true,
         wrap: true,
-        selectionStyle: "line"
+        selectionStyle: "text"
     });
     editor.resize();
 
@@ -138,16 +138,20 @@
     var featured_image = "";
     function render() {
         name = document.getElementById("name").value;
+        author = document.getElementById("author").value;
+        date = document.getElementById("date").value;
+        featured_image = document.getElementById("featured_image").value;
+
         markdown = editor.getValue();
         var markdown_html = converter.makeHtml(markdown);
         document.getElementById("pane-right").innerHTML = `
         <div class="landingPreview">
-            <div class="jumbo" style="background-image: url('');"></div>
+            <div class="jumbo" style="background-image: url('${featured_image}');"></div>
             <div class="innerLanding" style="margin-top: -5pt;">
-                <h1>name</h1>
+                <h1>${name}</h1>
                     ${markdown_html}
             </div>
-            <p class="published">Published</p>
+            <p class="published">Published ${date} by ${author}</p>
         </div>
         `;
     }

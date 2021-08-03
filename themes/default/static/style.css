@@ -374,4 +374,29 @@ details>p {
     .toTop {
         right: 2%;
     }
+
+    #pane-left, #pane-right {
+        float: unset;
+        width: 98%;
+    }
+
+    #pane-left {
+        height: 40%;
+        margin-bottom: 5pt;
+    }
+    #pane-right {
+        height: 55%;
+    }
+
+    .editorcontainer {
+        left: 2%;
+        right: 2%;
+        top: 2%;
+        bottom: 2%;
+    }
+
+    #openclose {
+        left: 135pt;
+        font-size: 9pt;
+    }
 }
