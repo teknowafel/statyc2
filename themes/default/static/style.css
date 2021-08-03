@@ -191,6 +191,16 @@ code {
     padding: 5pt;
     margin-top: 20pt;
 }
+.landingPreview {
+    background-color: rgb(42, 42, 42);
+    margin-left: 2%;
+    margin-right: 2%;
+    border-radius: 3pt;
+    color: white;
+    padding: 5pt;
+    padding-top: 10pt;
+    margin-top: 20pt;
+}
 
 .innerLanding {
     background-color: rgb(38, 38, 38);
@@ -321,12 +331,12 @@ summary {
 }
 
 #pane-left {
-    width: 40%;
+    width: 50%;
     float: left;
 }
 
 #pane-right {
-    width: 59%;
+    width: 49%;
     float: right;
     overflow-y: scroll;
 }

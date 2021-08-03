@@ -10,10 +10,10 @@
     <link rel="icon" type="image/svg" href="static/img/logo.svg">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" type="text/css" href="static/dracula.css">
-    <script src="static/ace.js"></script>
-    <script src="static/mode-markdown.js"></script>
-    <script src="static/theme-dracula.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.min.js" integrity="sha512-GoORoNnxst42zE3rYPj4bNBm0Q6ZRXKNH2D9nEmNvVF/z24ywVnijAWVi/09iBiVDQVf3UlZHpzhAJIdd9BXqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.min.js" integrity="sha512-8qx1DL/2Wsrrij2TWX5UzvEaYOFVndR7BogdpOyF4ocMfnfkw28qt8ULkXD9Tef0bLvh3TpnSAljDC7uyniEuQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/mode-markdown.min.js" integrity="sha512-8euv05RhbuOcZWj/kpF+KtKN7g1CPx7buTZjIBf/rZQz47cduH3DERWoqJFrIYE0TzaIlptz+Ir2BodrmLT8kQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/theme-tomorrow_night_eighties.min.js" integrity="sha512-ZpoDdz3A/zV2aKTjH8fcyDKhg+zOuu423OkuJ7SvK1jMRZUSkTtH1YQQS10pqNvi9CYT2jmtOCxuNQW9TEtHdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 <top id="top" />
 
@@ -93,21 +93,21 @@
     var element = document.getElementById("editor");
     var editor = ace.edit(element, {
         mode: "ace/mode/markdown",
-        theme: "ace/theme/dracula",
+        theme: "ace/theme/tomorrow_night_eighties",
         printMargin: false,
-        fontSize: "12pt",
+        fontSize: "13pt",
         behavioursEnabled: true,
         wrapBeheviorsEnabled: true,
         wrap: true,
         selectionStyle: "line"
-    })
+    });
     editor.resize();
 
     var rightPane = document.getElementById("pane-right");
 
     var innerpane = document.createElement("div");
-    innerpane.innerHTML = `
-                <div class="landing">
+    innerpane.innerHTML = `rel
+                <div class="landing preview">
                     <div class="jumbo" style="background-image: url('');"></div>
                     <div class="innerLanding" style="margin-top: -5pt;">
                         <h1>Title</h1>
@@ -126,7 +126,7 @@
         markdown = editor.getValue();
         var markdown_html = converter.makeHtml(markdown);
         document.getElementById("pane-right").innerHTML = `
-        <div class="landing">
+        <div class="landingPreview">
             <div class="jumbo" style="background-image: url('');"></div>
             <div class="innerLanding" style="margin-top: -5pt;">
                 <h1>Title</h1>
