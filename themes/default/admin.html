@@ -103,8 +103,12 @@
                 postbutton.innerHTML = `${post.name}`;
                 postlist.appendChild(postbutton);
             }
+
+            console.log(postsObj);
+            console.log(postsObj.posts);
         });
 
+    var newPostIndex = null;
     function loadPost(postName) {
         for (const post of postsObj.posts) {
             if (postName == post.name) {
@@ -115,9 +119,12 @@
                 editor.getSession().setValue(post.content);
 
                 loadedPost = post;
-                post.delete();
+                postsObj.posts[postsObj.posts.indexOf(post)] = null;
+                newPostIndex = postsObj.posts.indexOf(post);
             }
         }
+
+        console.log(loadedPost);
     }
 
     function togglePanel() {
@@ -197,10 +204,11 @@
         
         loadedPost.name = document.getElementById("name").value;
         loadedPost.author = document.getElementById("author").value;
-        loadedpost.date = document.getElementById("date").value;
-        loadedpost.featured_image = document.getElementById("featured_image").value;
+        loadedPost.date = document.getElementById("date").value;
+        loadedPost.featured_image = document.getElementById("featured_image").value;
+        loadedPost.content = editor.getValue();
 
-        postsObj = postsObj.unshift(loadedPost);
+        postsObj.posts.unshift(loadedPost);
 
         postsYaml = jsyaml.dump(postsObj);
         postsYaml = btoa(postsYaml);
