@@ -52,20 +52,20 @@
 
         </details>
         <label for="name">Name:</label>
-        <input type="text" id="name" value="name"><br><br>
+        <input type="text" id="name" value="It works!"><br><br>
 
         <label for="author">Author:</label>
-        <input type="text" id="author" value="author"><br><br>
+        <input type="text" id="author" value="John Smith"><br><br>
 
         <label for="date">Date:</label>
-        <input type="text" id="date" value="date"><br><br>
+        <input type="text" id="date" value="8/4/2021"><br><br>
 
         <label for="featured_image">Featured Image:</label>
-        <input type="text" id="featured_image" value="featured_image"><br><br>
+        <input type="text" id="featured_image" value="none"><br><br>
 
 
         <a href="#" id="openclose" onclick="togglePanel();">
-            ◀
+            ▶
         </a>
         <a target="_blank" id="exportYaml">Export yaml</a>
     </div>
@@ -130,6 +130,7 @@
     var editor = ace.edit(element, {
         mode: "ace/mode/markdown",
         theme: "ace/theme/tomorrow_night_eighties",
+        keyboardHandler: "ace/keyboard/vscode",
         printMargin: false,
         fontSize: "13pt",
         behavioursEnabled: true,
@@ -153,7 +154,7 @@
                 `;
     rightPane.appendChild(innerpane);
 
-    setInterval(render, 100);
+    setInterval(render, 500);
     var markdown = "";
     var converter = new showdown.Converter();
 
