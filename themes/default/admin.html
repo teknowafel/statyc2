@@ -51,17 +51,10 @@
             </summary>
 
         </details>
-        <label for="name">Name:</label>
-        <input type="text" id="name" value="It works!"><br><br>
 
-        <label for="author">Author:</label>
-        <input type="text" id="author" value="John Smith"><br><br>
+        <input type="text" id="author" value="John Smith"><br>
 
-        <label for="date">Date:</label>
-        <input type="text" id="date" value="8/4/2021"><br><br>
-
-        <label for="featured_image">Featured Image:</label>
-        <input type="text" id="featured_image" value="none"><br><br>
+        <input type="text" id="date" value="8/4/2021"><br>
 
 
         <a href="#" id="openclose" onclick="togglePanel();">
@@ -72,7 +65,14 @@
 
     <div class="editorcontainer">
         <div id="pane-left">
-            <div class="ace-editor" id="editor" style="height: 100%; width: 100%;">Hello world!</div>
+                <input type="text" id="name" value="It works!"><br>
+
+            <div class="ace-editor" id="editor" style="margin-top: 0%; height: 100%; width: 100%;">Hello world!</div>
+            
+            <div class="horiz">
+                <label for="featured_image" id="ftrlbl">Featured Image:</label>
+                <input type="text" id="featured_image" value="none">
+            </div>
         </div>
         <div id="pane-right">
 
@@ -88,6 +88,7 @@
     const panel = document.querySelector("#filePanel");
     const openclose = document.querySelector("#openclose");
     var postsObj = null;
+    var loadedPost = null;
 
     fetch('posts.yaml')
         .then(response => response.text())
@@ -103,7 +104,7 @@
                 postlist.appendChild(postbutton);
             }
         });
-    
+
     function loadPost(postName) {
         for (const post of postsObj.posts) {
             if (postName == post.name) {
@@ -112,6 +113,9 @@
                 document.getElementById("date").value = post.date;
                 document.getElementById("featured_image").value = post.featured_image;
                 editor.getSession().setValue(post.content);
+
+                loadedPost = post;
+                post.delete();
             }
         }
     }
@@ -142,7 +146,7 @@
     var rightPane = document.getElementById("pane-right");
 
     var innerpane = document.createElement("div");
-    innerpane.innerHTML = `rel
+    innerpane.innerHTML = `
                 <div class="landing preview">
                     <div class="jumbo" id="featuredImg" style="background-image: url('');"></div>
                     <div class="innerLanding" style="margin-top: -5pt;">
@@ -163,7 +167,7 @@
     var date = "";
     var featured_image = "";
     var postsYaml = "";
-    
+
     function render() {
         name = document.getElementById("name").value;
         author = document.getElementById("author").value;
@@ -190,18 +194,25 @@
             <p class="published">Published ${date} by ${author}</p>
         </div>
         `;
+        
+        loadedPost.name = document.getElementById("name").value;
+        loadedPost.author = document.getElementById("author").value;
+        loadedpost.date = document.getElementById("date").value;
+        loadedpost.featured_image = document.getElementById("featured_image").value;
+
+        postsObj = postsObj.unshift(loadedPost);
 
         postsYaml = jsyaml.dump(postsObj);
         postsYaml = btoa(postsYaml);
 
-        document.getElementById("exportYaml").setAttribute("download", "export.yaml");           
+        document.getElementById("exportYaml").setAttribute("download", "export.yaml");
         document.getElementById("exportYaml").setAttribute("href", `data:text/plain;base64,${postsYaml}`);
     }
 
     function exportYaml() {
 
     }
-    
+
 </script>
 
 <footer>

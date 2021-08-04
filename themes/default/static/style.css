@@ -329,28 +329,59 @@ summary {
 #pane-left,
 #pane-right {
     display: block;
-    background-color: rgb(32, 32, 32);
     height: 100%;
     border-radius: 3pt;
 }
 
 #pane-left {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(36, 36, 36);
     width: 50%;
     float: left;
 }
 
 #pane-right {
+    background-color: rgb(43, 43, 43);
     width: 49%;
     float: right;
     overflow-y: scroll;
+    overflow-x: hidden !important;
+    white-space: nowrap;
 }
 
 .ace-editor {
     border-radius: 3pt;
+    float: bottom;
 }
 
-details>p {
-    margin-left: 20pt;
+#name {
+    display: block;
+    color: white;
+    border: none;
+    outline: none;
+    border-style: none;
+    padding: 10pt;
+    padding-bottom: 0pt;
+    font-size: 20pt;
+    border-radius: 3pt;
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(199, 199, 255);
+    font-weight: 700;
+    margin-bottom: 10pt;
+}
+#ftrlbl {
+    font-weight: 500;
+    font-size: 12pt;
+    margin-left: 5pt;
+}
+#featured_image {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 12pt;
+    padding: 5pt;
 }
 
 @media (pointer:none),
