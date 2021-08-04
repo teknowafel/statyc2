@@ -256,7 +256,11 @@ h5 {
 }
 
 .markBtn {
-    background-color: rgb(92, 92, 255);
+    display: block;
+    margin-bottom: 10pt;
+    margin-left: 8pt;
+    margin-right: 1pt;
+    background-color: #8282ff;
     border-radius: 3pt;
     padding: 2pt;
     font-size: 11pt;

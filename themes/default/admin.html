@@ -32,9 +32,6 @@
         <a class="menuBtn" href="about.html">About</a>
     </div>
 
-    <div class="toTop">
-        <a class="menuBtn red" href="#top">▲</a>
-    </div>
     <script>
         fetch('settings.yaml')
             .then(response => response.text())
@@ -48,9 +45,10 @@
     </script>
 
     <div class="filesbar" id="filePanel" data-open="false">
-        <h2>Posts</h2>
-        <details>
-            <summary>Post</summary>
+        <details id="postlist">
+            <summary>
+                <h2 style="display: inline;">Posts</h2>
+            </summary>
 
         </details>
         <label for="name">Name:</label>
@@ -65,12 +63,11 @@
         <label for="featured_image">Featured Image:</label>
         <input type="text" id="featured_image" value="featured_image"><br><br>
 
-        <a href="#" class="markBtn">Edit Markdown</a>
 
         <a href="#" id="openclose" onclick="togglePanel();">
             ◀
         </a>
-        <a href="#" id="exportYaml">Export yaml</a>
+        <a target="_blank" id="exportYaml">Export yaml</a>
     </div>
 
     <div class="editorcontainer">
@@ -87,8 +84,37 @@
 </body>
 
 <script>
+    const postlist = document.querySelector("#postlist");
     const panel = document.querySelector("#filePanel");
     const openclose = document.querySelector("#openclose");
+    var postsObj = null;
+
+    fetch('posts.yaml')
+        .then(response => response.text())
+        .then(data => {
+            // Do something with your data
+            postsObj = jsyaml.load(data);
+            for (const post of postsObj.posts) {
+                var postbutton = document.createElement('a');
+                postbutton.className = "markBtn";
+                postbutton.setAttribute("onClick", `loadPost('${post.name}');`)
+                postbutton.href = "#";
+                postbutton.innerHTML = `${post.name}`;
+                postlist.appendChild(postbutton);
+            }
+        });
+    
+    function loadPost(postName) {
+        for (const post of postsObj.posts) {
+            if (postName == post.name) {
+                document.getElementById("name").value = post.name;
+                document.getElementById("author").value = post.author;
+                document.getElementById("date").value = post.date;
+                document.getElementById("featured_image").value = post.featured_image;
+                editor.getSession().setValue(post.content);
+            }
+        }
+    }
 
     function togglePanel() {
         if (panel.dataset.open == "true") {
@@ -107,7 +133,6 @@
         printMargin: false,
         fontSize: "13pt",
         behavioursEnabled: true,
-        wrapBeheviorsEnabled: true,
         wrap: true,
         selectionStyle: "text"
     });
@@ -118,7 +143,7 @@
     var innerpane = document.createElement("div");
     innerpane.innerHTML = `rel
                 <div class="landing preview">
-                    <div class="jumbo" style="background-image: url('');"></div>
+                    <div class="jumbo" id="featuredImg" style="background-image: url('');"></div>
                     <div class="innerLanding" style="margin-top: -5pt;">
                         <h1>Title</h1>
                         HTML
@@ -136,6 +161,8 @@
     var author = "";
     var date = "";
     var featured_image = "";
+    var postsYaml = "";
+    
     function render() {
         name = document.getElementById("name").value;
         author = document.getElementById("author").value;
@@ -144,9 +171,17 @@
 
         markdown = editor.getValue();
         var markdown_html = converter.makeHtml(markdown);
+
+        if (featured_image == "none") {
+            var img = "";
+        }
+        else {
+            var img = `<div class="jumbo" style="background-image: url('${featured_image}');"></div>`
+        }
+
         document.getElementById("pane-right").innerHTML = `
         <div class="landingPreview">
-            <div class="jumbo" style="background-image: url('${featured_image}');"></div>
+            ${img}
             <div class="innerLanding" style="margin-top: -5pt;">
                 <h1>${name}</h1>
                     ${markdown_html}
@@ -154,7 +189,13 @@
             <p class="published">Published ${date} by ${author}</p>
         </div>
         `;
+
+        postsYaml = jsyaml.dump(postsObj);
+        postsYaml = btoa(postsYaml);
+
+        document.getElementById("exportYaml").setAttribute("href", `data:text/plain;base64,${postsYaml}`);
     }
+    
 </script>
 
 <footer>
