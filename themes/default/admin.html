@@ -193,7 +193,12 @@
         postsYaml = jsyaml.dump(postsObj);
         postsYaml = btoa(postsYaml);
 
+        document.getElementById("exportYaml").setAttribute("download", "export.yaml");           
         document.getElementById("exportYaml").setAttribute("href", `data:text/plain;base64,${postsYaml}`);
+    }
+
+    function exportYaml() {
+
     }
     
 </script>
