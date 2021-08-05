@@ -347,11 +347,9 @@ summary {
     float: right;
     overflow-y: scroll;
     overflow-x: hidden !important;
-    white-space: nowrap;
 }
 
 .ace-editor {
-    border-radius: 3pt;
     float: bottom;
 }
 

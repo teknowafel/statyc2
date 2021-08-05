@@ -88,17 +88,16 @@
     const panel = document.querySelector("#filePanel");
     const openclose = document.querySelector("#openclose");
     var postsObj = null;
-    var loadedPost = null;
 
-    fetch('posts.yaml')
+    fetch('posts.json')
         .then(response => response.text())
         .then(data => {
             // Do something with your data
-            postsObj = jsyaml.load(data);
+            postsObj = JSON.parse(data);
             for (const post of postsObj.posts) {
                 var postbutton = document.createElement('a');
                 postbutton.className = "markBtn";
-                postbutton.setAttribute("onClick", `loadPost('${post.name}');`)
+                postbutton.onclick = function() {loadPost(post);}
                 postbutton.href = "#";
                 postbutton.innerHTML = `${post.name}`;
                 postlist.appendChild(postbutton);
@@ -108,23 +107,16 @@
             console.log(postsObj.posts);
         });
 
-    var newPostIndex = null;
-    function loadPost(postName) {
-        for (const post of postsObj.posts) {
-            if (postName == post.name) {
-                document.getElementById("name").value = post.name;
-                document.getElementById("author").value = post.author;
-                document.getElementById("date").value = post.date;
-                document.getElementById("featured_image").value = post.featured_image;
-                editor.getSession().setValue(post.content);
+    var renderJob = null;
+    function loadPost(thePost) {
+        document.getElementById("name").value = thePost.name;
+        document.getElementById("author").value = thePost.author;
+        document.getElementById("date").value = thePost.date;
+        document.getElementById("featured_image").value = thePost.featured_image;
+        editor.getSession().setValue(thePost.content);
 
-                loadedPost = post;
-                postsObj.posts[postsObj.posts.indexOf(post)] = null;
-                newPostIndex = postsObj.posts.indexOf(post);
-            }
-        }
-
-        console.log(loadedPost);
+        clearInterval(renderJob);
+        renderjob = setInterval(function() {render(thePost)}, 500);
     }
 
     function togglePanel() {
@@ -165,7 +157,7 @@
                 `;
     rightPane.appendChild(innerpane);
 
-    setInterval(render, 500);
+    
     var markdown = "";
     var converter = new showdown.Converter();
 
@@ -175,7 +167,7 @@
     var featured_image = "";
     var postsYaml = "";
 
-    function render() {
+    function render(post) {
         name = document.getElementById("name").value;
         author = document.getElementById("author").value;
         date = document.getElementById("date").value;
@@ -202,19 +194,17 @@
         </div>
         `;
         
-        loadedPost.name = document.getElementById("name").value;
-        loadedPost.author = document.getElementById("author").value;
-        loadedPost.date = document.getElementById("date").value;
-        loadedPost.featured_image = document.getElementById("featured_image").value;
-        loadedPost.content = editor.getValue();
+        post.name = name;
+        post.author = author;
+        post.date = date;
+        post.featured_image = featured_image;
+        post.content = editor.getValue();
 
-        postsObj.posts.unshift(loadedPost);
+        postsJSON = JSON.stringify(postsObj, null, 2);
+        postsJSON = btoa(postsJSON);
 
-        postsYaml = jsyaml.dump(postsObj);
-        postsYaml = btoa(postsYaml);
-
-        document.getElementById("exportYaml").setAttribute("download", "export.yaml");
-        document.getElementById("exportYaml").setAttribute("href", `data:text/plain;base64,${postsYaml}`);
+        document.getElementById("exportYaml").setAttribute("download", "export.json");
+        document.getElementById("exportYaml").setAttribute("href", `data:text/plain;base64,${postsJSON}`);
     }
 
     function exportYaml() {
