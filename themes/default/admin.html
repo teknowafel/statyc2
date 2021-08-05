@@ -96,11 +96,12 @@
     .then(data => {
         // Do something with your data
         postsObj = JSON.parse(data);
-        setInterval(makeButtons(), 500);
+        setInterval(function(){makeButtons()}, 500);
     });
 
 
     function makeButtons() {
+        
         for (const post of postsObj.posts) {
                 var postbutton = document.createElement('a');
                 postbutton.className = "markBtn";
