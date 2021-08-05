@@ -32,11 +32,11 @@
                 document.getElementById("title").innerHTML = post_name + " | " + doc.settings.site_name;
                 document.getElementById("titlebtn").innerHTML = doc.settings.site_name;
             });
-        fetch('posts.yaml')
+        fetch('posts.json')
             .then(response => response.text())
             .then(data => {
                 // Do something with your data
-                var doc = jsyaml.load(data);
+                var doc = JSON.parse(data);
                 for (const post of doc.posts) {
                     if (post.name == post_name) {
                         page_post = post;

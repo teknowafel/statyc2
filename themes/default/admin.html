@@ -56,6 +56,7 @@
 
         <input type="text" id="date" value="8/4/2021"><br>
 
+        <a href="#" onclick="createPost();">New Post +</a>
 
         <a href="#" id="openclose" onclick="togglePanel();">
             ▶
@@ -89,12 +90,18 @@
     const openclose = document.querySelector("#openclose");
     var postsObj = null;
 
+
     fetch('posts.json')
-        .then(response => response.text())
-        .then(data => {
-            // Do something with your data
-            postsObj = JSON.parse(data);
-            for (const post of postsObj.posts) {
+    .then(response => response.text())
+    .then(data => {
+        // Do something with your data
+        postsObj = JSON.parse(data);
+        setInterval(makeButtons(), 500);
+    });
+
+
+    function makeButtons() {
+        for (const post of postsObj.posts) {
                 var postbutton = document.createElement('a');
                 postbutton.className = "markBtn";
                 postbutton.onclick = function() {loadPost(post);}
@@ -102,11 +109,8 @@
                 postbutton.innerHTML = `${post.name}`;
                 postlist.appendChild(postbutton);
             }
-
-            console.log(postsObj);
-            console.log(postsObj.posts);
-        });
-
+    }
+    
     var renderJob = null;
     function loadPost(thePost) {
         document.getElementById("name").value = thePost.name;
@@ -117,6 +121,22 @@
 
         clearInterval(renderJob);
         renderjob = setInterval(function() {render(thePost)}, 500);
+    }
+
+    const d = new Date();
+    function createPost() {
+        id = postsObj.posts.length + 1;
+
+        var newPost = {
+            name : "New Post",
+            author : "Author",
+            date : d.getMonth()+1 + "/" + d.getDate() + "/" + d.getFullYear(),
+            featured_image: "none",
+            content : "Type here..."
+        };
+        postsObj.posts.unshift(newPost);
+        
+        loadPost(newPost);
     }
 
     function togglePanel() {
@@ -165,7 +185,6 @@
     var author = "";
     var date = "";
     var featured_image = "";
-    var postsYaml = "";
 
     function render(post) {
         name = document.getElementById("name").value;

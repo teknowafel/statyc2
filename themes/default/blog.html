@@ -35,11 +35,11 @@
     </script>
 
     <script type="text/javascript">
-        fetch('posts.yaml')
+        fetch('posts.json')
             .then(response => response.text())
             .then(data => {
                 // Do something with your data
-                var doc = jsyaml.load(data);
+                var doc = JSON.parse(data);
                 for (const post of doc.posts) {
                     // instantiate a markdown converter
                     var converter = new showdown.Converter();
