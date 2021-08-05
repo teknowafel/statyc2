@@ -111,7 +111,7 @@
             }
     }
     
-    var renderJob = null;
+    var openPost = null;
     function loadPost(thePost) {
         document.getElementById("name").value = thePost.name;
         document.getElementById("author").value = thePost.author;
@@ -119,15 +119,13 @@
         document.getElementById("featured_image").value = thePost.featured_image;
         editor.getSession().setValue(thePost.content);
 
-        clearInterval(renderJob);
-        renderjob = setInterval(function() {render(thePost)}, 500);
+        openPost = thePost;
     }
 
     const d = new Date();
     function createPost() {
-        id = postsObj.posts.length + 1;
 
-        var newPost = {
+        const newPost = {
             name : "New Post",
             author : "Author",
             date : d.getMonth()+1 + "/" + d.getDate() + "/" + d.getFullYear(),
@@ -136,7 +134,7 @@
         };
         postsObj.posts.unshift(newPost);
         
-        loadPost(newPost);
+        loadPost(postsObj.posts[0]);
     }
 
     function togglePanel() {
@@ -186,7 +184,8 @@
     var date = "";
     var featured_image = "";
 
-    function render(post) {
+    setInterval(function(){render()}, 500);
+    function render() {
         name = document.getElementById("name").value;
         author = document.getElementById("author").value;
         date = document.getElementById("date").value;
@@ -213,21 +212,17 @@
         </div>
         `;
         
-        post.name = name;
-        post.author = author;
-        post.date = date;
-        post.featured_image = featured_image;
-        post.content = editor.getValue();
+        openPost.name = name;
+        openPost.author = author;
+        openPost.date = date;
+        openPost.featured_image = featured_image;
+        openPost.content = editor.getValue();
 
         postsJSON = JSON.stringify(postsObj, null, 2);
         postsJSON = btoa(postsJSON);
 
         document.getElementById("exportYaml").setAttribute("download", "export.json");
         document.getElementById("exportYaml").setAttribute("href", `data:text/plain;base64,${postsJSON}`);
-    }
-
-    function exportYaml() {
-
     }
 
 </script>
