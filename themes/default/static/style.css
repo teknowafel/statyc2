@@ -211,16 +211,18 @@ code {
 }
 
 li {
-    color: rgb(217, 217, 255);
+    color: rgb(227, 227, 253);
+    margin-bottom: 5pt;
 }
 
 img {
-    height: 100pt;
+    width: 400pt;
     border-radius: 3pt;
 }
 
 h5 {
     margin-bottom: 5pt;
+    font-weight: 500;
 }
 
 .published {
@@ -282,10 +284,19 @@ h5 {
 .postItem {
     margin-bottom: 7pt;
     margin-left: 5pt;
+    background-color: rgb(32, 32, 32);
+    padding: 5pt;
+    border-radius: 5pt;
+}
+
+.postItem label {
+    font-weight: 500 !important;
+    font-size: 13pt;
 }
 
 .postBtnGroup {
-    margin-left: 5pt;
+    display: block;
+    margin-top: 5pt;
 }
 
 #postlist {
@@ -408,6 +419,7 @@ h5 {
     color: white;
     font-size: 12pt;
     padding: 5pt;
+    width: calc(100% - 30pt);
 }
 
 @media (pointer:none),

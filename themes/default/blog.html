@@ -58,13 +58,15 @@
                     // get the fake "link" to the post
                     var post_link = "posts.html?name=" + post.name;
                     // set the post's html to the template
+                    d = new Date(post.date);
+                    date = d.toLocaleDateString() + " at " + d.toLocaleTimeString();
                     element.innerHTML = `
                         <div class="jumboWrapper" id="${post.name}">
                             <div id="${post.name}Img" class="jumbo" style="background-image: url('${post.featured_image}');"></div>
                                 <div class="contentWrapper">
                                     <div class="titleBlock">
                                         <h2>${post.name}</h2>
-                                        <h5>${post.author} on ${post.date}</h5>
+                                        <h5>${post.author} ${date}</h5>
                                     </div>
                                     <div class="inner">
                                         <p>

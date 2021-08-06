@@ -44,7 +44,8 @@
                     }
                 }
 
-                var published = "Published " + page_post.date + " by " + page_post.author;
+                d = new Date(page_post.date);
+                date = d.toLocaleDateString() + " at " + d.toLocaleTimeString();
 
                 var converter = new showdown.Converter();
                 // create html from post in markdown form
@@ -71,7 +72,7 @@
                         <h1>${page_post.name}</h1>
                         ${markdown_html}
                     </div>
-                    <p class="published">${published}</p>
+                    <p class="published">${page_post.author} ${date}</p>
                 </div>
                 `;
                 postwrapper.appendChild(element);

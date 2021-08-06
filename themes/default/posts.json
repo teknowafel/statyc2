@@ -1,11 +1,9 @@
 {
-  "posts" : [
-    {
-      "name" : "Hello World!",
-      "author" : "John Smith",
-      "date" : "7/31/2021",
-      "featured_image" : "none",
-      "content" : "Greetings from outer space!"
-    }
-  ]
+    "posts": [{
+        "name": "Hello Again",
+        "author": "teknowafel",
+        "date": 1628276089515,
+        "featured_image": "none",
+        "content": "Hello World! Again. It's been a while. But there are some great new features. Here are a few:\n* `admin.html`, where you can create, edit, and export posts in the form of `posts.json`\n    - A nice list of posts on a cool slidey thingy\n        * it even makes timestamps for you when you make new posts\n    - A distraction-free workspace where you can view a live preview of the final result in real-time\n    - Post timestamps are converted to your locale automatically at rendering, simplifying the process of dates/times\n    - Fresh icons from *[Font Awesome](https://fontawesome.com/)* to improve the look and feel of the editor\n    - A place at the bottom of the editor to define a featured image\n        * `none` allows the user to forego a featured image\n\nI'd like to implement some new features in the near future as well. Here are a few:\n* A modal for authenticating with github API\n    - Assists with pushing the `posts.json` file in a user friendly manner\n* One of those *\"are you sure you want to delete this\"* modals\n    - Prevents accidental deletion of posts\n* Full-screen mode for the editor\n    - Focus 100% on what you're writing without distraction from the real-time preview\n* Buttons for **bold**, *italic*, etc...\n    - Further improve the user experience\n* Cookies to save important info *(optional)* \n    - recent work\n    - the **GitHub** auth token\n* Neatening as well as documentation of the code\n    - improves\n        * modularity\n        * readability\n        * performance\n* New features for posts, namely\n    - buttons on the bottom for the next post and the last post\n    - tags for categories and can be easily browsed"
+    }]
 }
