@@ -22,6 +22,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/theme-tomorrow_night_eighties.min.js"
         integrity="sha512-ZpoDdz3A/zV2aKTjH8fcyDKhg+zOuu423OkuJ7SvK1jMRZUSkTtH1YQQS10pqNvi9CYT2jmtOCxuNQW9TEtHdw=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://kit.fontawesome.com/08e8c64713.js" crossorigin="anonymous"></script>
 </head>
 <top id="top" />
 
@@ -45,23 +47,19 @@
     </script>
 
     <div class="filesbar" id="filePanel" data-open="false">
-        <details id="postlist">
-            <summary>
-                <h2 style="display: inline;">Posts</h2>
-            </summary>
+        <h2 style="display: inline !important;">Posts</h2>
+        <a href="#" onclick="createPost();" id = "createPost">+</a>
+        <div id="postlist">
 
-        </details>
+        </div>
 
+        <label goeswith="author"><i class="fas fa-user"></i></label>
         <input type="text" id="author" value="John Smith"><br>
-
-        <input type="text" id="date" value="8/4/2021"><br>
-
-        <a href="#" onclick="createPost();">New Post +</a>
 
         <a href="#" id="openclose" onclick="togglePanel();">
             ▶
         </a>
-        <a target="_blank" id="exportYaml">Export yaml</a>
+        <a target="_blank" id="exportJSON">Export JSON</a>
     </div>
 
     <div class="editorcontainer">
@@ -71,8 +69,8 @@
             <div class="ace-editor" id="editor" style="margin-top: 0%; height: 100%; width: 100%;">Hello world!</div>
             
             <div class="horiz">
-                <label for="featured_image" id="ftrlbl">Featured Image:</label>
-                <input type="text" id="featured_image" value="none">
+                <label for="featured_image" id="ftrlbl" style="opacity: 0.5;"><i class="fas fa-image"></i> </label>
+                <input type="text" id="featured_image" style="opacity: 0.5;" value="none">
             </div>
         </div>
         <div id="pane-right">
@@ -96,19 +94,26 @@
     .then(data => {
         // Do something with your data
         postsObj = JSON.parse(data);
-        setInterval(function(){makeButtons()}, 500);
+        setInterval(function(){makeButtons()}, 200);
+        loadPost(postsObj.posts[0]);
     });
 
 
     function makeButtons() {
-        
+        postlist.innerHTML = "";
         for (const post of postsObj.posts) {
-                var postbutton = document.createElement('a');
-                postbutton.className = "markBtn";
-                postbutton.onclick = function() {loadPost(post);}
+                var postbutton = document.createElement('div');
+                postbutton.className = "postItem";
                 postbutton.href = "#";
-                postbutton.innerHTML = `${post.name}`;
+                postbutton.innerHTML = `<label>${post.name}</label>
+                <div class="postBtnGroup" style="display: inline-block;">
+                <a href="#" class="markBtn" id="open${post.name}"><i class="fas fa-external-link-alt"></i></a>
+                <a href="#" class="markBtn redBg" id="delete${post.name}"><i class="fas fa-trash-alt"></i></a>
+                </div>
+                `;
                 postlist.appendChild(postbutton);
+                document.getElementById("open" + post.name).onclick = function() {loadPost(post);}
+                document.getElementById("delete" + post.name).onclick = function() {deletePost(post);}
             }
     }
     
@@ -116,20 +121,22 @@
     function loadPost(thePost) {
         document.getElementById("name").value = thePost.name;
         document.getElementById("author").value = thePost.author;
-        document.getElementById("date").value = thePost.date;
         document.getElementById("featured_image").value = thePost.featured_image;
         editor.getSession().setValue(thePost.content);
 
         openPost = thePost;
     }
+    function deletePost(thePost) {
+        const index = postsObj.posts.indexOf(thePost);
+        postsObj.posts.splice(index, 1);
+    }
 
-    const d = new Date();
     function createPost() {
-
+        const d = new Date();
         const newPost = {
             name : "New Post",
             author : "Author",
-            date : d.getMonth()+1 + "/" + d.getDate() + "/" + d.getFullYear(),
+            date : d,
             featured_image: "none",
             content : "Type here..."
         };
@@ -182,14 +189,14 @@
 
     var name = "";
     var author = "";
-    var date = "";
     var featured_image = "";
 
-    setInterval(function(){render()}, 500);
+    setInterval(function(){ if (openPost != null) {render();} }, 200);
     function render() {
         name = document.getElementById("name").value;
         author = document.getElementById("author").value;
-        date = document.getElementById("date").value;
+        d = new Date(openPost.date);
+        date = d.toLocaleDateString() + " at " + d.toLocaleTimeString();
         featured_image = document.getElementById("featured_image").value;
 
         markdown = editor.getValue();
@@ -209,21 +216,20 @@
                 <h1>${name}</h1>
                     ${markdown_html}
             </div>
-            <p class="published">Published ${date} by ${author}</p>
+            <p class="published"><i class="fas fa-calendar-day"></i> ${author} ${date}</p>
         </div>
         `;
         
         openPost.name = name;
         openPost.author = author;
-        openPost.date = date;
         openPost.featured_image = featured_image;
         openPost.content = editor.getValue();
 
         postsJSON = JSON.stringify(postsObj, null, 2);
         postsJSON = btoa(postsJSON);
 
-        document.getElementById("exportYaml").setAttribute("download", "export.json");
-        document.getElementById("exportYaml").setAttribute("href", `data:text/plain;base64,${postsJSON}`);
+        document.getElementById("exportJSON").setAttribute("download", d.getTime());
+        document.getElementById("exportJSON").setAttribute("href", `data:text/plain;base64,${postsJSON}`);
     }
 
 </script>

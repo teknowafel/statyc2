@@ -125,7 +125,7 @@ a:active {
 }
 
 h1 {
-    color: rgb(217, 217, 255) !important;
+    color: rgb(166, 166, 255) !important;
 }
 
 .titleBlock {
@@ -233,7 +233,7 @@ h5 {
     color: rgba(255, 255, 255, 0.5);
 }
 
-#exportYaml {
+#exportJSON {
     background-color: rgb(72, 72, 255);
     border-radius: 3pt;
     padding: 5pt;
@@ -247,7 +247,7 @@ h5 {
 #openclose {
     position: absolute;
     bottom: 1pt;
-    left: 140pt;
+    left: 210pt;
     font-size: 15pt;
     color: rgb(166, 166, 255);
     background-color: rgba(255, 255, 255, 0.1);
@@ -256,36 +256,60 @@ h5 {
 }
 
 .markBtn {
-    display: block;
-    margin-bottom: 10pt;
-    margin-left: 8pt;
-    margin-right: 1pt;
+    display: inline-block;
     background-color: #8282ff;
     border-radius: 3pt;
     padding: 2pt;
+    padding-left: 5pt;
+    padding-right: 5pt;
     font-size: 11pt;
+}
+.redBg {
+    background-color: rgb(255, 50, 50);
+}
+
+#createPost {
+    vertical-align: center;
+    display: inline;
+    color: rgb(166, 166, 255);
+    font-size: 20pt;
+    margin-left: 5pt;
+}
+
+.postItem {
+    margin-bottom: 7pt;
+}
+.postBtnGroup {
+    position: absolute;
+    left: 140pt;
+}
+
+#postlist {
+    margin-top: 10pt;
+    height: 295pt;
+    margin-bottom: 10pt;
+    overflow: auto;
 }
 
 .filesbar {
-    width: max-content;
     position: fixed;
     top: 15pt;
     left: 10pt;
     bottom: 50pt;
     background-color: rgb(48, 48, 48);
     padding: 10pt;
-    width: 110pt;
-    border-radius: 5pt;
+    width: 175pt;
+    border-radius: 3pt;
 }
 
 .filesbar[data-open="true"] {
     transition: 0.2s;
-    left: 15pt;
+    left: 10pt;
 }
 
 .filesbar[data-open="false"] {
     transition: 0.2s;
-    left: -130pt;
+    left: -200pt;
 }
 
 .filesbar details {
@@ -295,24 +319,6 @@ h5 {
 .filesbar label {
     font-weight: 400;
 }
-
-.filesbar input {
-    border: none;
-    color: white;
-    font-family: Ubuntu Mono;
-    border-radius: 3pt;
-    padding: 2pt;
-    background-color: rgb(71, 71, 71);
-}
-
-summary {
-    color: rgb(194, 194, 255);
-    background-color: rgba(255, 255, 255, 0.05);
-    padding: 2pt;
-    border-radius: 3pt;
-    margin-bottom: 10pt;
-}
-
 .editorcontainer {
     display: block;
     background-color: rgb(30, 30, 30);
@@ -342,10 +348,10 @@ summary {
 }
 
 #pane-right {
-    background-color: rgb(43, 43, 43);
+    background-color: rgb(32, 32, 32);
     width: 49%;
     float: right;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden !important;
 }
 
@@ -353,21 +359,35 @@ summary {
     float: bottom;
 }
 
-#name {
-    display: block;
+.filesbar input {
+    display: inline-block;
+    padding: 2pt;
     color: white;
     border: none;
     outline: none;
     border-style: none;
-    padding: 10pt;
-    padding-bottom: 0pt;
-    font-size: 20pt;
-    border-radius: 3pt;
-    background-color: rgba(0, 0, 0, 0);
+    font-size: 10pt;
+    background-color: rgb(42, 42, 42);
     color: rgb(199, 199, 255);
-    font-weight: 700;
-    margin-bottom: 10pt;
+    width: 92pt;
 }
+
+#name {
+    font-family: Ubuntu;
+    padding: 5pt;
+    border-radius: 3pt;
+    background-color: rgb(32, 32, 32);
+    color: rgb(166, 166, 255);
+    font-size: 30pt;
+    border: none;
+    outline: none;
+    font-weight: 600;
+}
+
+#author {
+    border-radius: 3pt;
+}
+
 #ftrlbl {
     font-weight: 500;
     font-size: 12pt;
