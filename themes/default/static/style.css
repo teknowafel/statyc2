@@ -206,6 +206,7 @@ code {
     background-color: rgb(38, 38, 38);
     padding: 15pt;
     border-radius: 3pt;
+    margin-bottom: 5pt;
 }
 
 li {
@@ -213,7 +214,7 @@ li {
 }
 
 img {
-    height: 200pt;
+    height: 100pt;
     border-radius: 3pt;
 }
 
@@ -278,10 +279,10 @@ h5 {
 
 .postItem {
     margin-bottom: 7pt;
+    margin-left: 5pt;
 }
 .postBtnGroup {
-    position: absolute;
-    left: 140pt;
+    margin-left: 5pt;
 }
 
 #postlist {
@@ -378,7 +379,7 @@ h5 {
     border-radius: 3pt;
     background-color: rgb(32, 32, 32);
     color: rgb(166, 166, 255);
-    font-size: 30pt;
+    font-size: 25pt;
     border: none;
     outline: none;
     font-weight: 600;
@@ -386,6 +387,8 @@ h5 {
 
 #author {
     border-radius: 3pt;
+    margin-left: 2pt;
+    width: 155pt;
 }
 
 #ftrlbl {

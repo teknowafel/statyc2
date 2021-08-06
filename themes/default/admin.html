@@ -48,7 +48,7 @@
 
     <div class="filesbar" id="filePanel" data-open="false">
         <h2 style="display: inline !important;">Posts</h2>
-        <a href="#" onclick="createPost();" id = "createPost">+</a>
+        <a href="#" onclick="createPost();" id = "createPost"><i class="fas fa-plus-circle" style="font-size: 17pt;"></i></a>
         <div id="postlist">
 
         </div>
@@ -59,7 +59,7 @@
         <a href="#" id="openclose" onclick="togglePanel();">
             ▶
         </a>
-        <a target="_blank" id="exportJSON">Export JSON</a>
+        <a target="_blank" id="exportJSON"><i class="fas fa-file-download"></i> Export JSON</a>
     </div>
 
     <div class="editorcontainer">
@@ -94,7 +94,7 @@
     .then(data => {
         // Do something with your data
         postsObj = JSON.parse(data);
-        setInterval(function(){makeButtons()}, 200);
+        setInterval(function(){makeButtons()}, 1000);
         loadPost(postsObj.posts[0]);
     });
 
@@ -125,10 +125,15 @@
         editor.getSession().setValue(thePost.content);
 
         openPost = thePost;
+
+        render();
+
     }
     function deletePost(thePost) {
         const index = postsObj.posts.indexOf(thePost);
         postsObj.posts.splice(index, 1);
+        
+        makeButtons();
     }
 
     function createPost() {
@@ -136,13 +141,15 @@
         const newPost = {
             name : "New Post",
             author : "Author",
-            date : d,
+            date : d.getTime(),
             featured_image: "none",
             content : "Type here..."
         };
         postsObj.posts.unshift(newPost);
         
         loadPost(postsObj.posts[0]);
+
+        makeButtons();
     }
 
     function togglePanel() {
@@ -171,16 +178,6 @@
     var rightPane = document.getElementById("pane-right");
 
     var innerpane = document.createElement("div");
-    innerpane.innerHTML = `
-                <div class="landing preview">
-                    <div class="jumbo" id="featuredImg" style="background-image: url('');"></div>
-                    <div class="innerLanding" style="margin-top: -5pt;">
-                        <h1>Title</h1>
-                        HTML
-                    </div>
-                    <p class="published">Published</p>
-                </div>
-                `;
     rightPane.appendChild(innerpane);
 
     
@@ -228,7 +225,7 @@
         postsJSON = JSON.stringify(postsObj, null, 2);
         postsJSON = btoa(postsJSON);
 
-        document.getElementById("exportJSON").setAttribute("download", d.getTime());
+        document.getElementById("exportJSON").setAttribute("download", d.getTime() + ".json");
         document.getElementById("exportJSON").setAttribute("href", `data:text/plain;base64,${postsJSON}`);
     }
 
