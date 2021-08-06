@@ -191,6 +191,7 @@ code {
     padding: 5pt;
     margin-top: 20pt;
 }
+
 .landingPreview {
     background-color: rgb(42, 42, 42);
     margin-left: 2%;
@@ -265,6 +266,7 @@ h5 {
     padding-right: 5pt;
     font-size: 11pt;
 }
+
 .redBg {
     background-color: rgb(255, 50, 50);
 }
@@ -281,13 +283,14 @@ h5 {
     margin-bottom: 7pt;
     margin-left: 5pt;
 }
+
 .postBtnGroup {
     margin-left: 5pt;
 }
 
 #postlist {
     margin-top: 10pt;
-    height: 295pt;
+    height: calc(100% - 90pt);
     margin-bottom: 10pt;
     overflow: auto;
 }
@@ -320,6 +323,7 @@ h5 {
 .filesbar label {
     font-weight: 400;
 }
+
 .editorcontainer {
     display: block;
     background-color: rgb(30, 30, 30);
@@ -396,6 +400,7 @@ h5 {
     font-size: 12pt;
     margin-left: 5pt;
 }
+
 #featured_image {
     background-color: rgba(0, 0, 0, 0);
     border: none;
@@ -430,12 +435,11 @@ h5 {
     .toTop {
         right: 2%;
     }
-
-    #pane-left, #pane-right {
+    #pane-left,
+    #pane-right {
         float: unset;
         width: 98%;
     }
-
     #pane-left {
         height: 40%;
         margin-bottom: 5pt;
@@ -443,14 +447,12 @@ h5 {
     #pane-right {
         height: 55%;
     }
-
     .editorcontainer {
         left: 2%;
         right: 2%;
         top: 2%;
         bottom: 2%;
     }
-
     #openclose {
         left: 135pt;
         font-size: 9pt;
