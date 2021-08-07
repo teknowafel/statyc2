@@ -6,6 +6,7 @@ window.onload = (event) => {
 };
 
 function render() {
+    console.log(settings);
     document.title = settings.siteName;
     var tmp = document.querySelectorAll('tmp');
     tmp.forEach(function (tmp, i) {
