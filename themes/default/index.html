@@ -24,11 +24,11 @@
         <a class="menuBtn red" href="#top">&#9650;</a>
     </div>
     <script>
-        fetch('settings.yaml')
+        fetch('settings.json')
             .then(response => response.text())
             .then(data => {
                 // Do something with your data
-                var doc = jsyaml.load(data);
+                var doc = JSON.parse(data);
                 document.getElementsByTagName("footer")[0].innerHTML = doc.settings.copyright_info;
                 document.getElementById("title").innerHTML = doc.settings.site_name;
                 document.getElementById("titlebtn").innerHTML = doc.settings.site_name;
@@ -50,6 +50,9 @@
             </ul>
             <p>
                 And on top of all that, it looks great thanks to its easy templating system. Feel free to check out the other pages and take note of these benefits.
+            </p>
+            <p>
+                Check out the new and improved <a href="admin.html">Admin page</a> to see how you can manage posts!
             </p>
         </div>
     </div>
