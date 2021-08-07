@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title id="title"></title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <link rel="stylesheet" type="text/css" href="static/fonts.css">
+    <script src="static/js-yaml.min.js"></script>
+    <script src="static/showdown.min.js"></script>
+    <link rel="icon" type="image/svg" href="static/img/logo.svg">
+    <script src="https://kit.fontawesome.com/08e8c64713.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<top id="top" />
+
+<body>
+    <div class="menu">
+        <a href="index.html" class="menuBtn title" id="titlebtn"></a>
+        <a class="menuBtn" href="blog.html">Blog</a>
+        <a class="menuBtn" href="about.html">About</a>
+    </div>
+
+    <div class="toTop">
+        <a class="menuBtn red" href="#top">&#9650;</a>
+    </div>
+    <script>
+        fetch('settings.yaml')
+            .then(response => response.text())
+            .then(data => {
+                // Do something with your data
+                var doc = jsyaml.load(data);
+                document.getElementsByTagName("footer")[0].innerHTML = doc.settings.copyright_info;
+                document.getElementById("title").innerHTML = doc.settings.site_name;
+                document.getElementById("titlebtn").innerHTML = doc.settings.site_name;
+            });
+    </script>
+
+    <div class="landing">
+        <div class="innerLanding">
+            <h1>Welcome!</h1>
+            <p>What were you expecting? Maybe advertisements, some loading circle gimmick that took up the whole page, or maybe a 3 second wait before it even loaded? Unfortunately, If you're a fan of those things you've come to the wrong place. Why is this
+                the wrong place you ask? Because the whole point of this project was to eliminate those things. The original idea behind statyc-py was to create a small and fast dynamic website that could be hosted on a potato. This is environmentally
+                friendly, and also better for the user with faster loading times so they can enjoy the content they came for. While this site isn't static, its philosophy is the same, but pages are rendered on the client side now. This opens up millions
+                of new possibilities, like a pure JS admin panel for editing settings or adding posts easily. This site is still:
+            </p>
+            <ul>
+                <li>Fast</li>
+                <li>Responsive</li>
+                <li>Light on server resources</li>
+            </ul>
+            <p>
+                And on top of all that, it looks great thanks to its easy templating system. Feel free to check out the other pages and take note of these benefits.
+            </p>
+        </div>
+    </div>
+
+</body>
+<footer>
+
+</footer>
+
+</html>

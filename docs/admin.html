@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title id="title"></title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <link rel="stylesheet" type="text/css" href="static/fonts.css">
+    <script src="static/js-yaml.min.js"></script>
+    <script src="static/showdown.min.js"></script>
+    <link rel="icon" type="image/svg" href="static/img/logo.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ace.min.js" integrity="sha512-GoORoNnxst42zE3rYPj4bNBm0Q6ZRXKNH2D9nEmNvVF/z24ywVnijAWVi/09iBiVDQVf3UlZHpzhAJIdd9BXqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/ext-language_tools.min.js" integrity="sha512-8qx1DL/2Wsrrij2TWX5UzvEaYOFVndR7BogdpOyF4ocMfnfkw28qt8ULkXD9Tef0bLvh3TpnSAljDC7uyniEuQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/mode-markdown.min.js" integrity="sha512-8euv05RhbuOcZWj/kpF+KtKN7g1CPx7buTZjIBf/rZQz47cduH3DERWoqJFrIYE0TzaIlptz+Ir2BodrmLT8kQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.12/theme-tomorrow_night_eighties.min.js" integrity="sha512-ZpoDdz3A/zV2aKTjH8fcyDKhg+zOuu423OkuJ7SvK1jMRZUSkTtH1YQQS10pqNvi9CYT2jmtOCxuNQW9TEtHdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://kit.fontawesome.com/08e8c64713.js" crossorigin="anonymous"></script>
+</head>
+<top id="top" />
+
+<body>
+    <div class="menu">
+        <a href="index.html" class="menuBtn title" id="titlebtn"></a>
+        <a class="menuBtn" href="blog.html">Blog</a>
+        <a class="menuBtn" href="about.html">About</a>
+    </div>
+
+    <script>
+        fetch('settings.yaml')
+            .then(response => response.text())
+            .then(data => {
+                // Do something with your data
+                var doc = jsyaml.load(data);
+                document.getElementsByTagName("footer")[0].innerHTML = doc.settings.copyright_info;
+                document.getElementById("title").innerHTML = doc.settings.site_name;
+                document.getElementById("titlebtn").innerHTML = doc.settings.site_name;
+            });
+    </script>
+
+    <div class="filesbar" id="filePanel" data-open="false">
+        <h2 style="display: inline !important;">Posts</h2>
+        <a href="#" onclick="createPost();" id="createPost"><i class="fas fa-plus-circle" style="font-size: 17pt;"></i></a>
+        <div id="postlist">
+
+        </div>
+
+        <label goeswith="author"><i class="fas fa-user"></i></label>
+        <input type="text" id="author" value="John Smith"><br>
+
+        <a href="#" id="openclose" onclick="togglePanel();">
+            ▶
+        </a>
+        <a target="_blank" id="exportJSON"><i class="fas fa-file-download"></i> Export JSON</a>
+    </div>
+
+    <div class="editorcontainer">
+        <div id="pane-left">
+            <input type="text" id="name" value="It works!"><br>
+
+            <div class="ace-editor" id="editor" style="margin-top: 0%; height: 100%; width: 100%;">Hello world!</div>
+
+            <div class="horiz">
+                <label for="featured_image" id="ftrlbl" style="opacity: 0.5;"><i class="fas fa-image"></i> </label>
+                <input type="text" id="featured_image" style="opacity: 0.5;" value="none">
+            </div>
+        </div>
+        <div id="pane-right">
+
+        </div>
+
+    </div>
+
+
+</body>
+
+<script>
+    const postlist = document.querySelector("#postlist");
+    const panel = document.querySelector("#filePanel");
+    const openclose = document.querySelector("#openclose");
+    var postsObj = null;
+
+
+    fetch('posts.json')
+        .then(response => response.text())
+        .then(data => {
+            // Do something with your data
+            postsObj = JSON.parse(data);
+            setInterval(function() {
+                makeButtons()
+            }, 1000);
+            loadPost(postsObj.posts[0]);
+        });
+
+
+    function makeButtons() {
+        postlist.innerHTML = "";
+        for (const post of postsObj.posts) {
+            var postbutton = document.createElement('div');
+            postbutton.className = "postItem";
+            postbutton.href = "#";
+            postbutton.innerHTML = `<label>${post.name}</label>
+                <div class="postBtnGroup">
+                <a href="#" class="markBtn" id="open${post.name}"><i class="fas fa-external-link-alt"></i></a>
+                <a href="#" class="markBtn redBg" id="delete${post.name}"><i class="fas fa-trash-alt"></i></a>
+                </div>
+                `;
+            postlist.appendChild(postbutton);
+            document.getElementById("open" + post.name).onclick = function() {
+                loadPost(post);
+            }
+            document.getElementById("delete" + post.name).onclick = function() {
+                deletePost(post);
+            }
+        }
+    }
+
+    var openPost = null;
+
+    function loadPost(thePost) {
+        document.getElementById("name").value = thePost.name;
+        document.getElementById("author").value = thePost.author;
+        document.getElementById("featured_image").value = thePost.featured_image;
+        editor.getSession().setValue(thePost.content);
+
+        openPost = thePost;
+
+        render();
+
+    }
+
+    function deletePost(thePost) {
+        const index = postsObj.posts.indexOf(thePost);
+        postsObj.posts.splice(index, 1);
+
+        makeButtons();
+    }
+
+    function createPost() {
+        const d = new Date();
+        const newPost = {
+            name: "New Post",
+            author: "Author",
+            date: d.getTime(),
+            featured_image: "none",
+            content: "Type here..."
+        };
+        postsObj.posts.unshift(newPost);
+
+        loadPost(postsObj.posts[0]);
+
+        makeButtons();
+    }
+
+    function togglePanel() {
+        if (panel.dataset.open == "true") {
+            panel.dataset.open = "false";
+            openclose.innerHTML = "▶";
+        } else {
+            panel.dataset.open = "true";
+            openclose.innerHTML = "◀";
+        }
+    }
+
+    var element = document.getElementById("editor");
+    var editor = ace.edit(element, {
+        mode: "ace/mode/markdown",
+        theme: "ace/theme/tomorrow_night_eighties",
+        keyboardHandler: "ace/keyboard/vscode",
+        printMargin: false,
+        fontSize: "13pt",
+        behavioursEnabled: true,
+        wrap: true,
+        selectionStyle: "text"
+    });
+    editor.resize();
+
+    var rightPane = document.getElementById("pane-right");
+
+    var innerpane = document.createElement("div");
+    rightPane.appendChild(innerpane);
+
+
+    var markdown = "";
+    var converter = new showdown.Converter();
+
+    var name = "";
+    var author = "";
+    var featured_image = "";
+
+    setInterval(function() {
+        if (openPost != null) {
+            render();
+        }
+    }, 200);
+
+    function render() {
+        name = document.getElementById("name").value;
+        author = document.getElementById("author").value;
+        d = new Date(openPost.date);
+        date = d.toLocaleDateString() + " at " + d.toLocaleTimeString();
+        featured_image = document.getElementById("featured_image").value;
+
+        markdown = editor.getValue();
+        var markdown_html = converter.makeHtml(markdown);
+
+        if (featured_image == "none") {
+            var img = "";
+        } else {
+            var img = `<div class="jumbo" style="background-image: url('${featured_image}');"></div>`
+        }
+
+        document.getElementById("pane-right").innerHTML = `
+        <div class="landingPreview">
+            ${img}
+            <div class="innerLanding" style="margin-top: -5pt;">
+                <h1>${name}</h1>
+                    ${markdown_html}
+            </div>
+            <p class="published"><i class="fas fa-calendar-day"></i> ${author} ${date}</p>
+        </div>
+        `;
+
+        openPost.name = name;
+        openPost.author = author;
+        openPost.featured_image = featured_image;
+        openPost.content = editor.getValue();
+
+        postsJSON = JSON.stringify(postsObj, null, 2);
+        postsJSON = btoa(postsJSON);
+
+        document.getElementById("exportJSON").setAttribute("download", d.getTime() + ".json");
+        document.getElementById("exportJSON").setAttribute("href", `data:text/plain;base64,${postsJSON}`);
+    }
+</script>
+
+<footer>
+</footer>
+
+</html>

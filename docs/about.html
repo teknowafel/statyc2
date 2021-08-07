@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title id="title"></title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+    <link rel="stylesheet" type="text/css" href="static/fonts.css">
+    <script src="static/js-yaml.min.js"></script>
+    <script src="static/showdown.min.js"></script>
+    <link rel="icon" type="image/svg" href="static/img/logo.svg">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<top id="top" />
+
+<body>
+    <div class="menu">
+        <a href="index.html" class="menuBtn title" id="titlebtn"></a>
+        <a class="menuBtn" href="blog.html">Blog</a>
+        <a class="menuBtn" href="about.html">About</a>
+    </div>
+
+    <div class="toTop">
+        <a class="menuBtn red" href="#top">▲</a>
+    </div>
+    <script>
+        fetch('settings.yaml')
+            .then(response => response.text())
+            .then(data => {
+                // Do something with your data
+                var doc = jsyaml.load(data);
+                document.getElementsByTagName("footer")[0].innerHTML = doc.settings.copyright_info;
+                document.getElementById("title").innerHTML = doc.settings.site_name;
+                document.getElementById("titlebtn").innerHTML = doc.settings.site_name;
+                document.getElementById("copyright").innerHTML = "<p>" + doc.settings.copyright_info + "</p>";
+            });
+    </script>
+
+    <div class="landing">
+        <div class="innerLanding">
+            <h1>About</h1>
+            <p>
+                This is the about page. It should include some more information pertaining to the website and its purpose. It may also contain copyright information, or contact information. For example, I can use the copyright_info variable below.
+            </p>
+            <img src="static/img/logo.svg">
+        </div>
+        <div id="copyright">
+        </div>
+</body>
+<footer>
+</footer>
+
+</html>
