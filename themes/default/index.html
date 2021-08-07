@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html>
+    <head>
+        <title></title>
+        <base href=".">
 
-<head>
-    <title>Home</title>
-    <script type="module" src="module/templates.js"></script>
-    <script type="module" src="module/render.js"></script>
-    <script type="module" src="module/settings.js"></script>
-    <link href="css/style.css" rel="stylesheet">
+        <script type="text/javascript" src="module/showdown.min.js"></script>
 
-    <script>const pageName = "Page Name"</script>
-</head>
+        <script type="module" src="module/templates.js"></script>
+        <script type="module" src="module/render.js"></script>
 
-<body>
-    <tmp id="post"></tmp>
-</body>
+        <script type="text/javascript module" src="data/settings.js"></script>
+        <link href="css/style.css" rel="stylesheet">
+        <link href="css/fonts.css" rel="stylesheet">
 
+        <script src="https://kit.fontawesome.com/08e8c64713.js" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+
+    <script type="text/javascript">const pageName = "Blog";</script>
+
+    <menus><tmp id="menus"></tmp></menus>
+
+    <body>
+        <tmp id="posts"></tmp>
+        <footer><tmp id="footer"></tmp></footer>
+    </body>
 </html>
