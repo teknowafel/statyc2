@@ -24,11 +24,11 @@
         <a class="menuBtn red" href="#top">▲</a>
     </div>
     <script>
-        fetch('settings.yaml')
+        fetch('settings.json')
             .then(response => response.text())
             .then(data => {
                 // Do something with your data
-                var doc = jsyaml.load(data);
+                var doc = JSON.parse(data);
                 document.getElementsByTagName("footer")[0].innerHTML = doc.settings.copyright_info;
                 document.getElementById("title").innerHTML = post_name + " | " + doc.settings.site_name;
                 document.getElementById("titlebtn").innerHTML = doc.settings.site_name;
