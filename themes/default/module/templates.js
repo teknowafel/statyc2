@@ -1,5 +1,5 @@
 // CODE FOR BLOG.HTML
-import posts from "../data/posts.js";
+import post from "../module/post.js";
 import settings from "../data/settings.js";
 
 var converter = new showdown.Converter();
@@ -8,7 +8,7 @@ function getPosts() {
     var postsElement = document.createElement('div');
     postsElement.id = "posts";
 
-    posts.posts.forEach(function (post) {
+    post.get.allPosts().forEach(function (post) {
         var mdpreview = post.content.split('\n')
         mdpreview = mdpreview.slice(0, 3).join(" ") + "..."
 
