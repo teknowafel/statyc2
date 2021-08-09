@@ -6,7 +6,11 @@ var handler = postHandler;
 // TEMPLATES
 var templates = {
     posts: handler.renderPostsList(),
+
+
     footer: settings.copyrightInfo,
+
+
     menus: `<top id="top" />
     <div class="menu">
         <a href="index.html" class="menuBtn title" id="titlebtn">${settings.siteName}</a>
@@ -17,6 +21,8 @@ var templates = {
     <div class="toTop">
         <a class="menuBtn red" href="#top">▲</a>
     </div>`,
+
+
     fullPost: function() {
         var queryString = window.location.search;
         var urlParams = new URLSearchParams(queryString);
