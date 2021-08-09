@@ -1,10 +1,11 @@
 // CODE FOR BLOG.HTML
-import post from "../module/post.js";
+import postHandler from "../module/post.js";
 import settings from "../data/settings.js";
 
+var handler = postHandler;
 // TEMPLATES
 var templates = {
-    posts: `${post.render.postsList()}`,
+    posts: `${handler.renderPostsList()}`,
     footer: settings.copyrightInfo,
     menus: `<top id="top" />
     <div class="menu">
