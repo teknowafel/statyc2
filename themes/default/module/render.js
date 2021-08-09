@@ -9,13 +9,13 @@ function render() {
     document.title = `${pageName} | ${settings.siteName}`;
     var tmp = document.querySelectorAll('tmp');
     var replacement = "";
-    tmp.forEach(function (tmp, i) {
+    tmp.forEach(function(tmp, i) {
         if (typeof templates[tmp.id] == "function") {
             replacement = templates[tmp.id]();
-        }
-        else {
+        } else {
             replacement = templates[tmp.id];
         }
         tmp.outerHTML = replacement;
     });
+    1
 }

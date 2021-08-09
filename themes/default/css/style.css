@@ -90,7 +90,8 @@ li a {
     background-color: rgb(57, 57, 255);
     border-radius: 2pt;
     padding: 1pt;
-    font-size: 9pt;
+    font-size: 10pt;
+    font-weight: 500;
 }
 
 .readMoreBtn:hover {

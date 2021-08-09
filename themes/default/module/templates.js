@@ -17,7 +17,7 @@ var templates = {
     <div class="toTop">
         <a class="menuBtn red" href="#top">▲</a>
     </div>`,
-    fullPost: function () {
+    fullPost: function() {
         var queryString = window.location.search;
         var urlParams = new URLSearchParams(queryString);
         var postName = urlParams.get('name');

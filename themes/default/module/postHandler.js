@@ -16,7 +16,7 @@ var postHandler = {
         var d = new Date(post.date);
         return `${d.toLocaleDateString()} at ${d.toLocaleTimeString()}`;
     },
-    
+
 
     //RENDER
 
@@ -27,8 +27,7 @@ var postHandler = {
     renderFeaturedImageDiv: function(post) {
         if (post.featuredImage != "none") {
             return `<div id="${post.name}Img" class="jumbo" style="background-image: url('${post.featuredImage}');"></div>`;
-        }
-        else {
+        } else {
             return "";
         }
     },
@@ -64,20 +63,17 @@ var postHandler = {
         return element;
     },
     renderFullPost: function(post) {
-
         var postWrapper = document.createElement("div");
         postWrapper.id = "postwrapper";
         var featuredImage = postHandler.renderFeaturedImageDiv(post);
         var postHTML = postHandler.renderMarkdownToHTML(post.content);
         var date = postHandler.getPostDateString(post);
-    
+
         if (featuredImage == "") {
             var margin = "";
-        }
-        else {
+        } else {
             var margin = "margin-top: -5pt;"
         }
-
 
         postWrapper.innerHTML = `
         <div class="landing">
@@ -94,11 +90,11 @@ var postHandler = {
     },
     renderPostsList: function() {
         var postsListElement = document.createElement('div');
-        postHandler.getAllPosts().forEach(function (post) {
+        postHandler.getAllPosts().forEach(function(post) {
             var element = postHandler.renderPostPreview(post)
             postsListElement.appendChild(element)
         });
-        
+
         return postsListElement.outerHTML;
     },
 };
