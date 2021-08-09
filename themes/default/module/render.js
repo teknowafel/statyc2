@@ -19,3 +19,5 @@ function render() {
     });
     1
 }
+
+export default render();

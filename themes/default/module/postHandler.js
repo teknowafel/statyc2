@@ -10,7 +10,7 @@ var postHandler = {
         return posts.find(post => post.name = name);
     },
     getPostLink: function(post) {
-        return `posts.html?name=${post.name}`;
+        return `index.html?view=fullPost&name=${post.name}`;
     },
     getPostDateString: function(post) {
         var d = new Date(post.date);
