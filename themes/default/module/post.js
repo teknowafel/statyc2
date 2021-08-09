@@ -7,7 +7,14 @@ export default {
         },
         postByName: function(name) {
             return posts.find(post => post.name = name);
-        }
+        },
+        postLink: function(post) {
+            return `posts.html?name=${post.name}`;
+        },
+        postDateString: function(post) {
+            var d = new Date(post.date);
+            return `${d.toLocaleDateString()} at ${d.toLocaleTimeString()}`;
+        },
     },
     render: {
         markdownPreview: function(markdown) {
@@ -20,30 +27,18 @@ export default {
             return converter.makeHtml(markdown);
         },
         postPreview: function(post) {
+            var element = document.createElement("div");
             if (post.featuredImage != "none") {
                 var featuredImage = `<div id="${post.name}Img" class="jumbo" style="background-image: url('${post.featuredImage}');"></div>`;
             }
             else {
                 var featuredImage = "";
             }
-        },
-        dateString: function(post) {
-            var d = new Date(post.date);
-            return `${d.toLocaleDateString()} at ${d.toLocaleTimeString()}`;
-        },
-        postsList: function() {
-            
-            var output = "";
-            
-            var postsListElement = document.createElement('div');
-            this.get.allPosts().forEach(function (post) {
 
-                var markdownHtml = converter.makeHtml(post.content)
-                var previewHtml = converter.makeHtml(mdpreview)
-                var element = document.createElement("div")
-                var postLink = `posts.html?name=${post.name}`
+            var previewHtml = this.render.markdownToHTML(this.render.markdownPreview(post));
+            var postLink = this.get.postLink(post);
 
-                element.innerHTML = `
+            element.outerHTML = `
                 <div class="jumboWrapper" id="${post.name}">
                 ${featuredImage}
                     <div class="contentWrapper">
@@ -58,11 +53,17 @@ export default {
                         </div>
                     </div>
                 </div>
-                `
-
-                postsElement.appendChild(element)
-                return postsElement.outerHTML;
+                `;
+        },
+        postsList: function() {
+            var output = "";
+            var postsListElement = document.createElement('div');
+            this.get.allPosts.forEach(function (post) {
+                element = this.render.postPreview(post)
+                postsListElement.appendChild(element)
             });
+            
+            return postsListElement;
         },
     },
 };
