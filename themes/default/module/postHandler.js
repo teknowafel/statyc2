@@ -20,7 +20,7 @@ var postHandler = {
     //RENDER
 
     renderMarkdownPreview: function(markdown) {
-        var mdpreview = markdown.split(' ');
+        var mdpreview = String(markdown).split(' ');
         return mdpreview.slice(0, 20).join(" ") + "...";
     },
     renderMarkdownToHTML: function(markdown) {
@@ -37,8 +37,9 @@ var postHandler = {
             var featuredImage = "";
         }
 
-        var previewHtml = this.renderMarkdownToHTML(this.render.markdownPreview(post));
-        var postLink = this.getPostLink(post);
+        var previewHtml = postHandler.renderMarkdownToHTML(postHandler.renderMarkdownPreview(post));
+        var postLink = postHandler.getPostLink(post);
+        var date = postHandler.getPostDateString(post);
 
         element.outerHTML = `
             <div class="jumboWrapper" id="${post.name}">
@@ -60,8 +61,8 @@ var postHandler = {
     renderPostsList: function() {
         var output = "";
         var postsListElement = document.createElement('div');
-        this.getAllPosts().forEach(function (post) {
-            element = this.renderPostPreview(post)
+        postHandler.getAllPosts().forEach(function (post) {
+            var element = postHandler.renderPostPreview(post)
             postsListElement.appendChild(element)
         });
         

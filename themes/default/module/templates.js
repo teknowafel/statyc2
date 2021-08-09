@@ -1,5 +1,5 @@
 // CODE FOR BLOG.HTML
-import postHandler from "../module/post.js";
+import postHandler from "../module/postHandler.js";
 import settings from "../data/settings.js";
 
 var handler = postHandler;
