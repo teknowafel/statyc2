@@ -5,7 +5,7 @@ import settings from "../data/settings.js";
 var handler = postHandler;
 // TEMPLATES
 var templates = {
-    posts: `${handler.renderPostsList()}`,
+    posts: handler.renderPostsList(),
     footer: settings.copyrightInfo,
     menus: `<top id="top" />
     <div class="menu">
@@ -16,7 +16,14 @@ var templates = {
 
     <div class="toTop">
         <a class="menuBtn red" href="#top">▲</a>
-    </div>`
+    </div>`,
+    fullPost: function () {
+        var queryString = window.location.search;
+        var urlParams = new URLSearchParams(queryString);
+        var postName = urlParams.get('name');
+        var post = postHandler.getPostByName(postName);
+        return postHandler.renderFullPost(post);
+    },
 };
 
 export default templates;
