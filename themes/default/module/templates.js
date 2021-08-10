@@ -2,20 +2,15 @@
 import postHandler from "../module/postHandler.js";
 import views from "../module/views.js";
 import settings from "../data/settings.js";
+import menu from "../module/menu.js";
 var handler = postHandler;
 // TEMPLATES
 var templates = {
     posts: handler.renderPostsList(),
     footer: settings.copyrightInfo,
-    menus: `<top id="top" />
-    <div class="menu">
-        <a href="index.html" class="menuBtn title" id="titlebtn">${settings.siteName}</a>
-        <a class="menuBtn" href="blog.html">Blog</a>
-        <a class="menuBtn" href="about.html">About</a>
-    </div>
-
-    <div class="toTop">
-        <a class="menuBtn red" href="#top">▲</a>
+    menu: menu.renderMenu(),
+    toTop: `<div class="toTop">
+        <a class="menuBtn red" href="index.html#top">▲</a>
     </div>`,
     fullPost: function() {
         var queryString = window.location.search;
@@ -24,7 +19,7 @@ var templates = {
         var post = postHandler.getPostByName(postName);
         return postHandler.renderFullPost(post);
     },
-    view: views.renderViews(),
+    view: views.renderView(views.views.home),
 };
 
 export default templates;
