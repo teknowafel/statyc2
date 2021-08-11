@@ -2,16 +2,16 @@ import postHandler from "../module/postHandler.js";
 import settings from "../data/settings.js";
 
 export default {
-    renderView: function(view) {
-        if (typeof this.views[view] == "function") {
-            return this.views[view].html();
+    renderView: function(theView) {
+        if (typeof this.views[theView] == "function") {
+            return theView.html();
         } 
         else {
-            return this.views[view].html;
+            return theView.html;
         }
     },
     getViewByName: function(name) {
-        return this.views.find(view => view.name = name);
+        return this.views[name];
     },
     views: {  
         home: {

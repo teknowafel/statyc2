@@ -7,7 +7,7 @@ export default {
         menu.classList = ["menu"];
 
         for (var v in views.views) {
-            view = views.views[v];
+            var view = views.views[v];
             var link = document.createElement('a');
             link.classList = ["menuBtn"];
             link.innerHTML = view.name;
