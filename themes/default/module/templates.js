@@ -19,7 +19,7 @@ var templates = {
         var post = postHandler.getPostByName(postName);
         return postHandler.renderFullPost(post);
     },
-    view: views.renderView(views.views.home),
+    currentView: views.renderView(views.views.home),
 };
 
 export default templates;

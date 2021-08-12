@@ -1,8 +1,13 @@
 import templates from "../module/templates.js";
 import settings from "../data/settings.js";
 
+import views from "../module/views.js";
+
 window.onload = (event) => {
     render();
+
+    views.setPageView(views.views.blog)
+    
 };
 
 function render() {
@@ -15,7 +20,7 @@ function render() {
         } else {
             replacement = templates[tmp.id];
         }
-        tmp.outerHTML = replacement;
+        tmp.innerHTML = replacement;
     });
     1
 }

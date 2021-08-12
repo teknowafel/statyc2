@@ -1,5 +1,6 @@
 import postHandler from "../module/postHandler.js";
 import settings from "../data/settings.js";
+import posts from "../data/posts.js";
 
 export default {
     renderView: function(theView) {
@@ -9,6 +10,9 @@ export default {
         else {
             return theView.html;
         }
+    },
+    setPageView: function(view) {
+        document.getElementById("currentView").innerHTML = this.renderView(view);
     },
     getViewByName: function(name) {
         return this.views[name];
@@ -37,7 +41,7 @@ export default {
         },
         blog: {
             name: "Blog",
-            html: `<tmp id="posts"></tmp>`,
+            html: postHandler.renderPostsList(),
         },
         fullPost: {
             name: "Post Name",
