@@ -12,7 +12,7 @@ export default {
         }
     },
     setPageView: function(view) {
-        document.getElementById("currentView").innerHTML = this.renderView(view);
+        document.getElementById("currentView").appendChild(this.renderView(view));
     },
     getViewByName: function(name) {
         return this.views[name];
@@ -20,6 +20,7 @@ export default {
     views: {  
         home: {
             name: settings.siteName,
+            showOnMenu: true,
             html: function(){
                 var post = {
                     name: "Welcome!",
@@ -41,10 +42,12 @@ export default {
         },
         blog: {
             name: "Blog",
+            showOnMenu: true,
             html: postHandler.renderPostsList(),
         },
         fullPost: {
             name: "Post Name",
+            showOnMenu: false,
             html: postHandler.renderFullPost(postHandler.getPostByName("Hello Again")),
         },
     },

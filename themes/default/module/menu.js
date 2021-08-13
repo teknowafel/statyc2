@@ -8,14 +8,18 @@ export default {
 
         for (var v in views.views) {
             var view = views.views[v];
-            var link = document.createElement('a');
-            link.classList = ["menuBtn"];
-            link.innerHTML = view.name;
-            link.href = "#";
-            link.onclick = views.renderView(view);
+            if (view.showOnMenu){
+                var link = document.createElement('a');
+                link.classList = ["menuBtn"];
+                link.innerHTML = view.name;
+                link.href = "#";
+                link.onclick = function(){
+                    views.setPageView(view);
+                }
 
-            menu.appendChild(link);
+                menu.appendChild(link);
+            }
         }
-        return menu.outerHTML;
+        return menu;
     }
 };

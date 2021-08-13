@@ -86,7 +86,7 @@ var postHandler = {
         </div>
         `;
 
-        return postWrapper.outerHTML;
+        return postWrapper;
     },
     renderPostsList: function() {
         var postsListElement = document.createElement('div');
@@ -95,7 +95,7 @@ var postHandler = {
             postsListElement.appendChild(element)
         });
 
-        return postsListElement.outerHTML;
+        return postsListElement;
     },
 };
 
