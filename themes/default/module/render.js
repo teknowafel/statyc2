@@ -6,7 +6,7 @@ window.views = views;
 
 window.onload = (event) => {
     render();
-    views.setPageView(views.views.fullPost);
+    views.setPageView(views.views.home);
 };
 
 function render() {

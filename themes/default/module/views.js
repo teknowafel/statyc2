@@ -3,28 +3,24 @@ import settings from "../data/settings.js";
 import posts from "../data/posts.js";
 
 export default {
-    renderView: function(theView) {
-        if (typeof this.views[theView] == "function") {
-            return theView();
-        } 
-        else {
-            return theView.html;
-        }
+    renderView: function(theView, args) {
+        return theView.html(args);
     },
     menuBtn: function(btnID) {
         var view = this.getViewByName( btnID.replace("menuBtn", "") );
         this.setPageView(view);
     },
-    setPageView: function(view) {
+    setPageView: function(view, args) {
         document.getElementById("currentView").innerHTML = "";
-        document.getElementById("currentView").appendChild(this.renderView(view));
+        document.getElementById("currentView").append(this.renderView(view, args));
     },
     getViewByName: function(name) {
-        return this.views.filter((view)=> this.views.view.name == name);
+        return this.views[name];
     },
     views: {  
         home: {
-            name: settings.siteName,
+            name: "home",
+            menuName: settings.siteName,
             showOnMenu: true,
             html: function(){
                 var post = {
@@ -46,14 +42,16 @@ export default {
             },
         },
         blog: {
-            name: "Blog",
+            name: "blog",
+            menuName: "Blog",
             showOnMenu: true,
-            html: postHandler.renderPostsList(),
+            html: function() { return postHandler.renderPostsList(); },
         },
         fullPost: {
-            name: "Post Name",
+            name: "fullPost",
+            menuName: "Post Name",
             showOnMenu: false,
-            html: postHandler.renderFullPost(postHandler.getPostByName("Hello Again")),
+            html: function(postName){ return postHandler.renderFullPost(postHandler.getPostByName(postName)); },
         },
     },
 };

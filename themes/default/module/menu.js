@@ -10,7 +10,7 @@ export default {
             if (view.showOnMenu){
                 var link = document.createElement('a');
                 link.classList = ["menuBtn"];
-                link.innerHTML = view.name;
+                link.innerHTML = view.menuName;
                 link.id = `menuBtn${view.name}`;
                 link.setAttribute('onclick', `views.menuBtn('${link.id}');`);
                 link.href = "#top";

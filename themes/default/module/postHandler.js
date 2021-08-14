@@ -9,8 +9,8 @@ var postHandler = {
     getPostByName: function(name) {
         return posts.find(post => post.name = name);
     },
-    getPostLink: function(post) {
-        return `index.html?view=fullPost&name=${post.name}`;
+    getPostLink: function(postName) {
+        return `views.setPageView(views.views.fullPost, '${postName}')`;
     },
     getPostDateString: function(post) {
         var d = new Date(post.date);
@@ -41,7 +41,7 @@ var postHandler = {
         element.id = post.name;
 
         var previewHtml = postHandler.renderMarkdownToHTML(postHandler.renderMarkdownPreview(post.content));
-        var postLink = postHandler.getPostLink(post);
+        var postLink = postHandler.getPostLink(post.name);
         var date = postHandler.getPostDateString(post);
         var featuredImage = postHandler.renderFeaturedImageDiv(post);
 
@@ -54,7 +54,7 @@ var postHandler = {
                 </div>
                 <div class="inner">
                     <p>
-                        ${previewHtml}<a href="${postLink}" class="readMoreBtn">Read more...</a>
+                        ${previewHtml}<a href="#top" onclick="${postLink}" class="readMoreBtn">Read more...</a>
                     </p>
                 </div>
             </div>
