@@ -5,17 +5,22 @@ import posts from "../data/posts.js";
 export default {
     renderView: function(theView) {
         if (typeof this.views[theView] == "function") {
-            return theView.html();
+            return theView();
         } 
         else {
             return theView.html;
         }
     },
+    menuBtn: function(btnID) {
+        var view = this.getViewByName( btnID.replace("menuBtn", "") );
+        this.setPageView(view);
+    },
     setPageView: function(view) {
+        document.getElementById("currentView").innerHTML = "";
         document.getElementById("currentView").appendChild(this.renderView(view));
     },
     getViewByName: function(name) {
-        return this.views[name];
+        return this.views.filter((view)=> this.views.view.name == name);
     },
     views: {  
         home: {
