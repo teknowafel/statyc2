@@ -59,7 +59,7 @@ var postHandler = {
                 </div>
             </div>
             `;
-
+        
         return element;
     },
     renderFullPost: function(post) {
